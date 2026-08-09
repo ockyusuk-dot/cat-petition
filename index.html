@@ -1201,7 +1201,8 @@ function track(name) {
     const f = document.createElement("iframe");
     f.setAttribute("aria-hidden", "true");
     f.style.cssText = "position:absolute;width:1px;height:1px;border:0;opacity:0;left:-9999px";
-    f.src = "e/" + name + ".html?t=" + Date.now();
+    // Cloudflare가 .html을 떼고 넘기므로 처음부터 최종 주소로 부른다 (왕복 1회 절약)
+    f.src = "e/" + name + "?t=" + Date.now();
     document.body.appendChild(f);
     setTimeout(() => f.remove(), 5000);
   } catch (e) { /* 통계는 실패해도 사이트에 영향 없음 */ }
