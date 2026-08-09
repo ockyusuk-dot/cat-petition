@@ -1,0 +1,59 @@
+name: 청원 동의 수 갱신
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-count
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 국회 API에서 동의 수 읽기
+        id: fetch
+        run: |
+          API="https://petitions.assembly.go.kr/api/petits/57313935A03C4654E064B49691C6967B?petitId=57313935A03C4654E064B49691C6967B&view=&sttusCode="
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+          COUNT=""
+          for i in 1 2 3; do
+            COUNT=$(curl -sS -m 30 -H 'Accept: application/json' -A "$UA" "$API" | jq -r '.agreCo // empty')
+            if echo "$COUNT" | grep -qE '^[0-9]+$'; then break; fi
+            echo "시도 $i 실패, 10초 후 재시도"
+            COUNT=""
+            sleep 10
+          done
+          if [ -z "$COUNT" ]; then
+            echo "숫자를 읽지 못했습니다. 이번 실행은 건너뜁니다."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "읽은 값: $COUNT"
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+
+      - name: 바뀌었으면 count.json 갱신
+        if: steps.fetch.outputs.ok == 'true'
+        env:
+          NEW: ${{ steps.fetch.outputs.count }}
+        run: |
+          OLD=$(jq -r '.count // -1' count.json 2>/dev/null || echo -1)
+          if [ "$NEW" = "$OLD" ]; then
+            echo "숫자 그대로($OLD). 커밋하지 않습니다."
+            exit 0
+          fi
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          printf '{ "count": %s, "updated": "%s" }\n' "$NEW" "$TODAY" > count.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add count.json
+          git commit -m "동의 수 갱신: $OLD -> $NEW [skip ci]"
+          git push
