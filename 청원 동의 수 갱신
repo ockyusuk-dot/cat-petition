@@ -1,4 +1,4 @@
-name: 청원 동의 수 갱신
+name: .github/workflows/update-count.yml
 
 on:
   schedule:
