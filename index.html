@@ -29,10 +29,11 @@
 <meta name="theme-color" content="#FCFAF7">
 <style>
   :root{
-    --paper:#FCFAF7; --card:#FFFDF9;
-    --ink:#1C1815; --ink2:#574E46; --ink3:#8A8178;
-    --line:#EAE4DC; --soft:#F6EFE7;
-    --accent:#B85C22; --accent-deep:#9E3F18;
+    --paper:#F2EFE6; --card:#FFFDF9;
+    --ink:#23211B; --ink2:#5B564B; --ink3:#9C958A;
+    --line:#E6DFD4; --soft:#EAEFE7;
+    --accent:#3E6B54; --accent-deep:#2B4E3B;
+    --track:#E2E7DE;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
@@ -49,9 +50,32 @@
     padding: 16px 18px calc(18px + env(safe-area-inset-bottom));
   }
 
-  /* ---- 첫 화면 ---- */
-  h1 { font-size: 25px; line-height: 1.32; font-weight: 800; letter-spacing: -0.6px; margin: 6px 0 5px; }
-  .subtitle { font-size: 12.5px; color: var(--ink3); margin: 0 0 14px; letter-spacing: -0.2px; }
+  /* ---- 첫 화면: 사진 + 박스 ---- */
+  .wrap { padding-top: 0; }
+  .hero { position: relative; margin: 0 -18px 20px; height: 268px; overflow: hidden;
+          border-radius: 0 0 26px 26px; background: #E6E0D6; }
+  .hero > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 80%; display: block; }
+  .hero::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(16,14,10,.76) 0%, rgba(16,14,10,.30) 36%, rgba(16,14,10,0) 64%); }
+  .hero .cap { position: absolute; left: 20px; right: 20px; top: 36px; z-index: 2; }
+  h1 { color: #fff; font-size: 31px; line-height: 1.24; font-weight: 800;
+       letter-spacing: -1.1px; margin: 0 0 8px; text-shadow: 0 2px 20px rgba(0,0,0,.45); }
+  .subtitle { color: rgba(255,255,255,.86); font-size: 12.5px; margin: 0;
+              letter-spacing: -0.2px; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+
+  .panel { background: #fff; border-radius: 24px; padding: 22px 20px 20px;
+           box-shadow: 0 12px 34px rgba(50,40,28,.09), 0 2px 8px rgba(50,40,28,.05); }
+  .phead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .plabel { font-size: 12px; color: var(--ink3); margin: 0; letter-spacing: -.2px; }
+  .pill { font-size: 11.5px; font-weight: 700; letter-spacing: -.2px;
+          background: var(--soft); color: var(--accent-deep); padding: 5px 10px; border-radius: 99px; }
+
+  .barwrap { position: relative; margin: 22px 0 6px; padding-top: 26px; }
+  .bar { height: 10px; border-radius: 99px; background: var(--track); overflow: hidden; }
+  .bar > i { display: block; height: 100%; border-radius: 99px; background: var(--accent); }
+  .barcat { position: absolute; top: 0; width: 28px; height: 28px; pointer-events: none; }
+  .barnote { font-size: 11.5px; color: var(--ink3); margin-bottom: 12px; }
+  .fielddiv { height: 1px; background: var(--line); margin: 4px 0 14px; border: 0; }
 
   #field-box { width: 100%; }
   canvas { display: block; }
@@ -59,13 +83,14 @@
 
   .nums { margin-top: 12px; }
   .nums .main { font-size: 15px; color: var(--ink2); letter-spacing: -0.3px; }
-  #n-count { font-size: 27px; font-weight: 800; color: var(--ink); letter-spacing: -0.8px; }
+  #n-count { font-size: 38px; font-weight: 800; color: var(--ink); letter-spacing: -1.6px; }
   #n-goal { font-weight: 700; color: var(--ink2); }
   #n-scale { font-size: 12.5px; color: var(--ink3); margin-top: 3px; }
-  .countdown { font-size: 13px; font-weight: 700; color: var(--accent-deep); margin-top: 7px; }
 
   /* ---- 행동 ---- */
   .cta { margin: 18px 0 0; }
+  .btn-primary { background: linear-gradient(180deg,#4A7C61,var(--accent)); border-radius: 16px; padding: 17px;
+                 box-shadow: 0 8px 20px rgba(30,50,38,.22); }
   .cta-note { font-size: 14px; font-weight: 700; color: var(--ink); text-align: center; margin: 0 0 10px; }
   button {
     font-family: inherit; width: 100%; font-size: 17px; font-weight: 700;
@@ -100,32 +125,41 @@
   .err { font-size: 13px; color: var(--accent-deep); text-align: center; margin-top: 10px; }
 
   /* ---- 설명 ---- */
-  .explain { margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--line); }
-  .explain h2 {
-    font-size: 19px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.3;
-    margin: 36px 0 13px; padding-left: 11px; border-left: 3px solid var(--accent);
-  }
-  .explain p { font-size: 15px; line-height: 1.85; color: var(--ink2); margin: 0 0 15px; }
+  .explain { margin-top: 40px; }
+  .explain h2 { font-size: 21px; font-weight: 800; letter-spacing: -0.7px; line-height: 1.3;
+                margin: 44px 0 16px; }
+  .explain h2::before { content: ""; display: block; width: 30px; height: 3px; border-radius: 2px;
+                        background: var(--accent); margin-bottom: 12px; }
+  .explain p { font-size: 15.5px; line-height: 1.9; color: var(--ink2); margin: 0 0 15px; }
+  .callout { background: #fff; border-left: 4px solid var(--accent); border-radius: 0 14px 14px 0;
+             padding: 16px 18px; margin: 18px 0; font-size: 16px;
+             box-shadow: 0 6px 18px rgba(50,40,28,.06); }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 18px; }
+  .chips span { font-size: 12.5px; font-weight: 600; color: #7A6F5F;
+                background: #E9E3D7; border-radius: 99px; padding: 7px 12px; }
   .explain b { color: var(--ink); }
-  .explain .lead-strong { font-size: 18px; font-weight: 800; color: var(--ink); line-height: 1.6; margin-bottom: 14px; }
+  .explain .lead-strong { font-size: 22px; font-weight: 800; color: var(--ink); line-height: 1.5;
+                          letter-spacing: -.7px; margin-bottom: 16px; }
   .explain .tight { color: var(--ink3); }
 
-  .demands { list-style: none; margin: 0 0 20px; padding: 0; }
-  .demands li {
-    font-size: 15px; line-height: 1.7; color: var(--ink2); margin-bottom: 10px;
-    padding: 13px 15px; background: var(--soft); border-radius: 10px;
-  }
-  .demands li b { color: var(--accent-deep); }
+  .demands { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 10px; }
+  .demands li { font-size: 15px; line-height: 1.7; color: var(--ink2); margin: 0;
+                background: #fff; border-radius: 16px; padding: 16px 18px;
+                box-shadow: 0 6px 18px rgba(50,40,28,.07), 0 1px 3px rgba(50,40,28,.04);
+                display: flex; gap: 12px; align-items: flex-start; }
+  .demands li b { color: var(--accent); flex: 0 0 auto; font-size: 14px;
+                  background: var(--soft); border-radius: 99px; padding: 3px 10px; }
 
-  .orgs { font-size: 14px; line-height: 2; color: var(--ink2); }
-  .orgs .sep { color: #CFC7BC; padding: 0 3px; }
+  .orgs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .orgs .org { font-size: 13px; color: #4F4A40; background: #fff; border: 1px solid var(--line);
+               border-radius: 99px; padding: 8px 13px; }
   .todo { color: #A0086B; background: #FDF0F7; padding: 1px 6px; border-radius: 5px; font-size: 12.5px; }
 
   /* ---- 사진 ---- */
   figure.ph { margin: 0 0 20px; }
   figure.ph img {
     width: 100%; height: auto; display: block;
-    border-radius: 10px; background: #F1EFEC;   /* 불러오는 동안의 자리 */
+    border-radius: 14px; background: #E9E4DB;   /* 불러오는 동안의 자리 */
   }
   figure.ph figcaption { font-size: 12px; color: var(--ink3); line-height: 1.55; margin-top: 7px; }
   .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 20px; }
@@ -134,10 +168,17 @@
   .gallery.press figure.ph img { aspect-ratio: 4 / 3; object-fit: cover; }
 
   /* ---- 맺음말 · 아래쪽 버튼 ---- */
-  .closing { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center; }
-  .closing p { font-size: 16px; line-height: 1.8; color: var(--ink2); margin: 0 0 8px; }
-  .closing .last { font-weight: 800; color: var(--accent-deep); font-size: 19px; }
-  .cta-bottom { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .closing { background: var(--accent-deep); color: #fff; border-radius: 24px;
+             padding: 32px 24px; margin-top: 44px; text-align: center; }
+  .closing p { font-size: 16.5px; line-height: 1.8; color: rgba(255,255,255,.88); margin: 0 0 8px; }
+  .closing .last { font-weight: 800; color: #fff; font-size: 21px; }
+  .closing figure.ph img { border-radius: 16px; }
+  .closing figcaption { color: rgba(255,255,255,.6) !important; }
+  .cta-bottom { margin-top: 22px; }
+  .closing .cta-note { color: rgba(255,255,255,.88); }
+  .closing .btn-primary { background: #fff; color: var(--accent-deep);
+                          box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+  .closing .again a { color: rgba(255,255,255,.72); }
 
   /* ---- 공유 카드 원본 (화면 밖 1080×1080) ---- */
   #card {
@@ -175,13 +216,30 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>아직 그곳에 살고 있습니다</h1>
-  <p class="subtitle">재개발 지역 길고양이 구조 의무화 특별법 · 국민동의청원</p>
-  <div id="field-box"><canvas id="field"></canvas></div>
-  <div class="nums">
-    <span class="main"><b id="n-count">–</b>명 / <b id="n-goal">–</b>명</span>
-    <div id="n-scale"></div>
-    <div class="countdown" id="countdown"></div>
+  <div class="hero">
+    <img src="images/web/hero-new.jpg" alt="불도저로 밀린 재개발 부지에 남아 있는 길고양이" fetchpriority="high">
+    <div class="cap">
+      <h1>아직 그곳에 살고 있습니다</h1>
+      <p class="subtitle">재개발 지역 길고양이 구조 의무화 특별법 · 국민동의청원</p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="phead">
+      <p class="plabel">지금까지 모인 서명</p>
+      <span class="pill" id="dday"></span>
+    </div>
+    <div class="nums">
+      <span class="main"><b id="n-count">–</b>명 / <b id="n-goal">–</b>명</span>
+      <div id="n-scale"></div>
+    </div>
+    <div class="barwrap">
+      <div class="bar"><i id="barfill" style="width:0"></i></div>
+      <canvas class="barcat" id="barcat" width="84" height="84"></canvas>
+    </div>
+    <div class="barnote" id="barnote"></div>
+    <hr class="fielddiv">
+    <div id="field-box"><canvas id="field"></canvas></div>
   </div>
 
   <div class="cta">
@@ -202,13 +260,12 @@
   <div id="result"></div>
 
   <!-- ============================================================
-       설명 — 첫 화면 아래. reservedHeight()는 .cta까지만 재므로
-       이 영역이 아무리 길어져도 위쪽 버튼을 밀어내지 않는다.
+       설명 — 첫 화면 아래. 길어져도 위쪽 버튼에는 영향이 없다.
   ============================================================ -->
   <section class="explain">
     <p class="lead-strong">사람이 떠난 동네에 고양이가 남습니다.</p>
     <p>이사는 사람만 갑니다. 밥그릇은 빈 채로 남고, 도로가 막히고, 돌보던 사람도 들어갈 수 없게 됩니다. 그다음에 중장비가 들어옵니다.</p>
-    <p>지금 대한민국에는 이 상황을 막을 법이 <b>하나도 없습니다.</b></p>
+    <p class="callout">지금 대한민국에는 이 상황을 막을 법이 <b>하나도 없습니다.</b></p>
 
 
 
@@ -243,7 +300,10 @@
     <h2>왜 아무도 막지 못하나</h2>
     <p>현행법은 재개발을 시작할 때 <b>사람의 이주대책은 반드시 세우도록</b> 하고 있습니다.</p>
     <p>같은 땅에 살던 동물에 대해서는 아무것도 요구하지 않습니다.</p>
-    <p class="tight">실태조사 의무 없음. 구조 계획 의무 없음. 비용 부담 주체 없음. 지키지 않아도 제재 없음.</p>
+    <div class="chips">
+      <span>실태조사 의무 없음</span><span>구조 계획 의무 없음</span>
+      <span>비용 부담 주체 없음</span><span>지키지 않아도 제재 없음</span>
+    </div>
     <p>그래서 지금 이 문제는 전적으로 개인의 몫입니다. 자기 돈으로 사료를 사고, 자기 시간을 들여 공사장을 돌고, 포기하면 그 동네 고양이는 그대로 죽습니다. 개인의 선의가 끊기는 순간 아무 대책이 없는 구조입니다.</p>
     <p>일반적인 중성화(TNR)로도 해결되지 않습니다. TNR은 수술 후 살던 자리로 돌려보내는 것을 전제로 하는데, 재개발 지역은 그 자리가 사라지기 때문입니다.</p>
 
@@ -300,7 +360,7 @@
       </figure>
 
     <h2>함께하는 단체들</h2>
-    <p class="orgs">고양이급식소전국행동<span class="sep">·</span> 동물권단체케어<span class="sep">·</span> 어울림<span class="sep">·</span> 전국재개발동물구호연대<span class="sep">·</span> 한국동물보호연합<span class="sep">·</span> 헬프캣츠</p>
+    <div class="orgs"><span class="org">고양이급식소전국행동</span><span class="org">동물권단체케어</span><span class="org">어울림</span><span class="org">전국재개발동물구호연대</span><span class="org">한국동물보호연합</span><span class="org">헬프캣츠</span></div>
 
 
     <div class="closing">
@@ -312,13 +372,14 @@
       </figure>
       <p>지금 이 순간에도 그 동네에는 고양이가 살아 있습니다.</p>
       <p class="last"><span id="close-date"></span>까지입니다.</p>
-    </div>
 
-    <div class="cta-bottom">
+      <div class="cta-bottom">
       <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
       <button class="btn-primary" id="btn-sign-2">서명하러 가기</button>
       <div class="again"><a id="link-done-2">이미 서명하셨나요? 카드 만들기</a></div>
     </div>
+    </div>
+
   </section>
 </div>
 
@@ -345,7 +406,7 @@ const GOAL = 50000;
 const DEADLINE = "2026-09-03";
 const SITE_URL = "https://catlaw.nct-ste.workers.dev";      // 배포 주소
 const CARD_FOOTER = "catlaw.nct-ste.workers.dev";   // 카드 맨 아래 한 줄
-const CAT_UNIT = 200;   // 고양이 한 마리가 나타내는 사람 수
+const CAT_UNIT = 500;   // 고양이 한 마리가 나타내는 사람 수
 
 /* 방문자 통계용. Cloudflare Web Analytics 토큰을 넣으면 켜진다.
    비워두면 아무것도 하지 않는다 (아무 요청도 나가지 않음). */
@@ -642,9 +703,11 @@ function drawCatTiny(g, cat, x, y, s, color) {
   }
   g.fill();
 
-  // 귀 + 머리 (중성화 표식이면 왼쪽 귀 끝이 평평하다)
+  // 귀 + 머리.
+  // 중성화 표식은 여기서는 넣지 않는다 — 20~35px에서는 표식이 아니라 흠집처럼 보인다.
+  // 카드의 큰 그림(drawCatLarge)에는 그대로 살아 있다.
   const L = earPoints({ x: e[0][0], y: e[0][1] }, { x: e[1][0] - es, y: e[1][1] },
-                      { x: e[2][0], y: e[2][1] }, cat.earTip);
+                      { x: e[2][0], y: e[2][1] }, false);
   const R = earPoints({ x: e[3][0], y: e[3][1] }, { x: e[4][0] + es, y: e[4][1] },
                       { x: e[5][0], y: e[5][1] }, false);
   g.beginPath();
@@ -827,27 +890,9 @@ function drawCatLarge(g, cat, x, y, s) {
 const canvas = document.getElementById("field");
 const ctx = canvas.getContext("2d");
 
-/* 캔버스를 제외한 나머지 UI(숫자 + 버튼)가 실제로 차지하는 높이를 실측한다.
-   상수로 어림잡으면 화면이 짧은 기기에서 버튼이 접히는 곳 아래로 내려간다. */
-function reservedHeight() {
-  const wrap = document.querySelector(".wrap");
-  const cta = document.querySelector(".cta");
-  const prev = canvas.style.height;
-  canvas.style.height = "0px";                       // 캔버스를 잠시 접고
-  const top = wrap.getBoundingClientRect().top;
-  const bottom = cta.getBoundingClientRect().bottom; // 결과 이미지(#result)는 제외
-  const padBottom = parseFloat(getComputedStyle(wrap).paddingBottom) || 0;
-  canvas.style.height = prev;
-  return (bottom - top) + padBottom;
-}
-
 function fieldSize() {
   const box = document.getElementById("field-box");
-  const w = box.clientWidth;
-  const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
-  // 남는 높이를 전부 필드에 준다 → 버튼은 항상 첫 화면 안에 남는다
-  const h = Math.max(140, vh - reservedHeight() - 4);
-  return { w, h };
+  return { w: box.clientWidth, h: 150 };   // 박스 안에 들어가는 고정 높이
 }
 
 const GRAY = "#E4DED3";          // 아주 옅은 단색 — 채워진 쪽과 경계가 한눈에 보이도록
@@ -855,19 +900,19 @@ const TOTAL_CATS = GOAL / CAT_UNIT;   // 50,000 ÷ 200 = 250마리
 
 /* 열 수는 250을 나누어떨어뜨리는 값 중에서 고른다.
    그래야 마지막 줄까지 꽉 차고, 빈칸을 채우는 여분의 고양이가 생기지 않는다. */
+/* 박스 폭을 채우는 배치들 중에서 고양이가 가장 큰 것을 고른다.
+   크기만 보고 고르면 가운데만 채운 작은 정사각형이 뽑힌다. */
 function chooseColumns(total, w, h) {
-  const portrait = window.innerHeight >= window.innerWidth;   // 세로 화면이면 세로로 긴 배치만
-  let best = null, any = null;
+  let best = null, wide = null;
   for (let cols = 1; cols <= total; cols++) {
     if (total % cols) continue;
     const rows = total / cols;
     const cell = Math.min(w / cols, h / rows);
     const cand = { cols, rows, cell };
-    if (!any || cell > any.cell) any = cand;
-    if (portrait && rows < cols) continue;
     if (!best || cell > best.cell) best = cand;
+    if (cols * cell >= w * 0.85 && (!wide || cell > wide.cell)) wide = cand;
   }
-  return best || any;
+  return wide || best;
 }
 
 function drawField() {
@@ -901,11 +946,25 @@ function renderCountdown() {
   const left = daysLeft();
   const remain = Math.max(0, GOAL - state.count);
   let text;
-  if (left < 0) text = "서명이 마감되었습니다";
-  else if (remain === 0) text = "목표 인원을 채웠습니다";
-  else if (left === 0) text = "오늘이 마감일입니다 · " + fmt(remain) + "명 남았습니다";
-  else text = "마감까지 " + left + "일";
-  document.getElementById("countdown").textContent = text;
+  if (left < 0) text = "마감 종료";
+  else if (remain === 0) text = "목표 달성";
+  else if (left === 0) text = "오늘 마감";
+  else text = "마감 D-" + left;
+  document.getElementById("dday").textContent = text;
+}
+
+/* 진행 막대와 그 끝에 앉은 고양이. 서명이 늘면 고양이가 오른쪽으로 간다. */
+function renderBar() {
+  const pct = Math.min(100, state.count / GOAL * 100);
+  document.getElementById("barfill").style.width = pct.toFixed(1) + "%";
+  document.getElementById("barnote").textContent = pct.toFixed(1) + "% 달성";
+  const cv = document.getElementById("barcat");
+  cv.style.left = "calc(" + pct.toFixed(1) + "% - 14px)";
+  const g = cv.getContext("2d");
+  g.setTransform(3, 0, 0, 3, 0, 0);
+  g.clearRect(0, 0, 28, 28);
+  drawCatTiny(g, Object.assign(generateCat(7), { pose: "sit", tail: "up", earTip: false }),
+              1, 1, 26, "#2B4E3B");
 }
 
 function renderNumbers() {
@@ -1089,6 +1148,7 @@ async function makeCard() {
   await loadCount();
   renderNumbers();
   renderCountdown();
+  renderBar();
   drawField();
 
   const n = state.count;
@@ -1234,6 +1294,7 @@ function copyLink(btn) {
   await loadCount();
   renderNumbers();
   renderCountdown();
+  renderBar();
   drawField();
 })();
 </script>
