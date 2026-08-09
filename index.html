@@ -2,6 +2,13 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
+<script>
+  /* 옛 주소(*.workers.dev)로 들어온 사람을 정식 주소로 넘긴다.
+     화면을 그리기 전에 처리해야 깜빡임이 없다. replace라 뒤로가기 고리도 안 생긴다. */
+  if (location.hostname.endsWith(".workers.dev")) {
+    location.replace("https://savecats.kr" + location.pathname + location.search + location.hash);
+  }
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="stylesheet" as="style" crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
@@ -10,6 +17,7 @@
 
 <!-- 링크 미리보기 (카카오톡·인스타·트위터에 붙일 때 보이는 카드).
      카카오톡은 상대경로를 못 읽으므로 반드시 절대주소여야 한다. -->
+<link rel="canonical" href="https://savecats.kr/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://savecats.kr/">
 <meta property="og:site_name" content="재개발 지역 길고양이 구조 의무화 특별법 국민동의청원">
