@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" as="style" crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<title>아직 그곳에 살고 있습니다 · 재개발 지역 길고양이 구조 의무화 특별법</title>
+<meta name="description" content="재개발·재건축 현장에 남겨진 길고양이를 구조하고 안전하게 이주시키도록 하는 특별법 국민동의청원입니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+
+<!-- 링크 미리보기 (카카오톡·인스타·트위터에 붙일 때 보이는 카드)
+     TODO: 도메인이 정해지면 아래 두 개를 절대주소로 바꿀 것. 카카오톡은 상대경로를 읽지 못한다.
+       <meta property="og:url"   content="https://내도메인/">
+       <meta property="og:image" content="https://내도메인/images/og.jpg"> -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="재개발 지역 길고양이 구조 의무화 특별법 국민동의청원">
+<meta property="og:title" content="아직 그곳에 살고 있습니다">
+<meta property="og:description" content="사람이 떠난 동네에 고양이가 남습니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+<meta property="og:image" content="images/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="아직 그곳에 살고 있습니다">
+<meta name="twitter:description" content="사람이 떠난 동네에 고양이가 남습니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+<meta name="twitter:image" content="images/og.jpg">
+
+<link rel="icon" href="images/icon-180.png" type="image/png">
+<link rel="apple-touch-icon" href="images/icon-180.png">
+<meta name="theme-color" content="#FCFAF7">
+<style>
+  :root{
+    --paper:#FCFAF7; --card:#FFFDF9;
+    --ink:#1C1815; --ink2:#574E46; --ink3:#8A8178;
+    --line:#EAE4DC; --soft:#F6EFE7;
+    --accent:#B85C22; --accent-deep:#9E3F18;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+                 "Apple SD Gothic Neo", sans-serif;
+    background: var(--paper); color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+    word-break: keep-all;          /* 한국어는 어절 단위로 줄바꿈 */
+    overflow-wrap: break-word;     /* 긴 문자열은 그래도 넘치지 않게 */
+  }
+  .wrap {
+    max-width: 520px; margin: 0 auto;
+    padding: 16px 18px calc(18px + env(safe-area-inset-bottom));
+  }
+
+  /* ---- 첫 화면 ---- */
+  h1 { font-size: 25px; line-height: 1.32; font-weight: 800; letter-spacing: -0.6px; margin: 6px 0 5px; }
+  .subtitle { font-size: 12.5px; color: var(--ink3); margin: 0 0 14px; letter-spacing: -0.2px; }
+
+  #field-box { width: 100%; }
+  canvas { display: block; }
+  #field { display: block; margin: 0 auto; }
+
+  .nums { margin-top: 12px; }
+  .nums .main { font-size: 15px; color: var(--ink2); letter-spacing: -0.3px; }
+  #n-count { font-size: 27px; font-weight: 800; color: var(--ink); letter-spacing: -0.8px; }
+  #n-goal { font-weight: 700; color: var(--ink2); }
+  #n-scale { font-size: 12.5px; color: var(--ink3); margin-top: 3px; }
+  .countdown { font-size: 13px; font-weight: 700; color: var(--accent-deep); margin-top: 7px; }
+
+  /* ---- 행동 ---- */
+  .cta { margin: 18px 0 0; }
+  .cta-note { font-size: 14px; font-weight: 700; color: var(--ink); text-align: center; margin: 0 0 10px; }
+  button {
+    font-family: inherit; width: 100%; font-size: 17px; font-weight: 700;
+    padding: 16px; border: 0; border-radius: 12px; cursor: pointer; letter-spacing: -0.3px;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(184,92,34,.26); }
+  .btn-primary:active { background: var(--accent-deep); transform: translateY(1px); }
+  .btn-second { background: #fff; color: var(--accent); border: 1.5px solid var(--accent); margin-top: 10px; }
+  .btn-ghost { background: #F0ECE6; color: var(--ink2); margin-top: 8px; font-weight: 600; }
+  .hidden { display: none; }
+
+  .namebox { margin-top: 10px; }
+  .namebox input {
+    width: 100%; font-family: inherit; font-size: 16px;   /* 16px 미만이면 iOS가 확대한다 */
+    padding: 13px; border: 1px solid var(--line); border-radius: 11px; background: #fff; color: var(--ink);
+  }
+  .namebox input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+  .namehint { font-size: 12px; color: var(--ink3); margin: 6px 0 0; }
+  .again { text-align: center; margin-top: 14px; }
+  .again a { font-size: 13px; color: var(--ink3); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+  /* ---- 결과 ---- */
+  #result { margin-top: 18px; }
+  #result img { width: 100%; border-radius: 12px; border: 1px solid var(--line); display: block; }
+  .savehint { font-size: 13px; color: var(--ink2); text-align: center; margin: 10px 0 4px; line-height: 1.6; }
+  .err { font-size: 13px; color: var(--accent-deep); text-align: center; margin-top: 10px; }
+
+  /* ---- 설명 ---- */
+  .explain { margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--line); }
+  .explain h2 {
+    font-size: 19px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.3;
+    margin: 36px 0 13px; padding-left: 11px; border-left: 3px solid var(--accent);
+  }
+  .explain p { font-size: 15px; line-height: 1.85; color: var(--ink2); margin: 0 0 15px; }
+  .explain b { color: var(--ink); }
+  .explain .lead-strong { font-size: 18px; font-weight: 800; color: var(--ink); line-height: 1.6; margin-bottom: 14px; }
+  .explain .tight { color: var(--ink3); }
+
+  .demands { list-style: none; margin: 0 0 20px; padding: 0; }
+  .demands li {
+    font-size: 15px; line-height: 1.7; color: var(--ink2); margin-bottom: 10px;
+    padding: 13px 15px; background: var(--soft); border-radius: 10px;
+  }
+  .demands li b { color: var(--accent-deep); }
+
+  .orgs { font-size: 14px; line-height: 2; color: var(--ink2); }
+  .orgs .sep { color: #CFC7BC; padding: 0 3px; }
+  .todo { color: #A0086B; background: #FDF0F7; padding: 1px 6px; border-radius: 5px; font-size: 12.5px; }
+
+  /* ---- 사진 ---- */
+  figure.ph { margin: 0 0 20px; }
+  figure.ph img {
+    width: 100%; height: auto; display: block;
+    border-radius: 10px; background: #F1EFEC;   /* 불러오는 동안의 자리 */
+  }
+  figure.ph figcaption { font-size: 12px; color: var(--ink3); line-height: 1.55; margin-top: 7px; }
+  .gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 20px; }
+  .gallery figure.ph { margin: 0; }
+  /* 사진마다 비율이 달라 줄이 안 맞는 문제 → 이 그리드만 4:3으로 잘라 맞춘다 */
+  .gallery.press figure.ph img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+  /* ---- 맺음말 · 아래쪽 버튼 ---- */
+  .closing { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); text-align: center; }
+  .closing p { font-size: 16px; line-height: 1.8; color: var(--ink2); margin: 0 0 8px; }
+  .closing .last { font-weight: 800; color: var(--accent-deep); font-size: 19px; }
+  .cta-bottom { margin-top: 28px; padding-top: 26px; border-top: 1px solid var(--line); }
+
+  /* ---- 공유 카드 원본 (화면 밖 1080×1080) ---- */
+  #card {
+    position: absolute; left: -20000px; top: 0;
+    width: 1080px; height: 1080px;
+    background: var(--card); color: #1A1713;
+    padding: 52px 72px 44px;
+    display: flex; flex-direction: column; align-items: center;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+                 "Apple SD Gothic Neo", sans-serif;
+  }
+  .c-name { font-size: 34px; color: #7A6E62; margin-bottom: 8px; }
+  #card-cat { width: 356px; height: 356px; display: block; }
+  .c-lead { font-size: 38px; margin-top: 10px; color: #4A423A; }
+  .c-big { font-size: 50px; font-weight: 800; margin-top: 10px; line-height: 1.3; text-align: center; }
+  .c-big em { font-style: normal; color: var(--accent); font-size: 62px; }
+  .c-petition { font-size: 26px; color: #4A423A; margin-top: 22px; text-align: center; line-height: 1.5; }
+  .c-deadline { font-size: 29px; font-weight: 700; color: var(--accent-deep); margin-top: 14px; }
+  .c-goal { font-size: 32px; color: #3B342C; margin-top: 18px; }
+  .c-top { flex: 1 1 auto; }                        /* 위아래로 여백을 반씩 나눈다 */
+  .c-space { flex: 1 1 auto; min-height: 84px; }    /* 인스타 링크 스티커 자리 */
+  .c-url { font-size: 22px; color: #9A9089; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+  /* 파일이 없거나 깨져도 레이아웃이 무너지지 않게, 그 사진 칸만 걷어낸다.
+     인라인 onerror로 부르므로 body보다 먼저 정의한다. */
+  function imgFail(img) {
+    var fig = img.closest("figure");
+    var box = fig && fig.parentElement;
+    if (fig) fig.remove();
+    if (box && box.classList.contains("gallery") && !box.querySelector("figure")) box.remove();
+  }
+</script>
+</head>
+<body>
+<div class="wrap">
+  <h1>아직 그곳에 살고 있습니다</h1>
+  <p class="subtitle">재개발 지역 길고양이 구조 의무화 특별법 · 국민동의청원</p>
+  <div id="field-box"><canvas id="field"></canvas></div>
+  <div class="nums">
+    <span class="main"><b id="n-count">–</b>명 / <b id="n-goal">–</b>명</span>
+    <div id="n-scale"></div>
+    <div class="countdown" id="countdown"></div>
+  </div>
+
+  <div class="cta">
+    <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
+    <button class="btn-primary" id="btn-sign">서명하러 가기</button>
+
+    <div class="namebox hidden" id="namebox">
+      <input id="name" type="text" maxlength="12" autocomplete="off"
+             aria-label="카드에 넣을 이름 (선택)" placeholder="이름 (선택)">
+      <p class="namehint">카드에만 쓰이고 저장하지 않습니다</p>
+    </div>
+    <button class="btn-second hidden" id="btn-done">서명 완료했어요</button>
+    <div class="again"><a id="link-done">이미 서명하셨나요? 카드 만들기</a></div>
+  </div>
+
+  <div id="result"></div>
+
+  <!-- ============================================================
+       설명 — 첫 화면 아래. reservedHeight()는 .cta까지만 재므로
+       이 영역이 아무리 길어져도 위쪽 버튼을 밀어내지 않는다.
+  ============================================================ -->
+  <section class="explain">
+    <p class="lead-strong">사람이 떠난 동네에 고양이가 남습니다.</p>
+    <p>이사는 사람만 갑니다. 밥그릇은 빈 채로 남고, 도로가 막히고, 돌보던 사람도 들어갈 수 없게 됩니다. 그다음에 중장비가 들어옵니다.</p>
+    <p>지금 대한민국에는 이 상황을 막을 법이 <b>하나도 없습니다.</b></p>
+
+
+
+    <h2>지금 무슨 일이 일어나고 있나</h2>
+    <p>매년 전국 2,000~3,000개 구역에서 재개발과 재건축이 진행됩니다. 그 안에 살던 고양이들은 어느 날 갑자기 먹이도, 물도, 숨을 곳도 없는 공사장 한복판에 남겨집니다.</p>
+
+      <figure class="ph">
+        <img src="images/web/site-demolition.jpg" width="1100" height="1100" alt="철거가 진행된 재개발 현장"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>철거된 재개발 현장 전경, 하남 교산지구</figcaption>
+      </figure>
+    <p>굶어 죽습니다. 먹이를 찾아 도로를 건너다 차에 치입니다. 무너지는 콘크리트에 깔립니다. 철거 잔해에 그대로 묻히기도 합니다.</p>
+
+    <div class="gallery">
+      <figure class="ph">
+        <img src="images/web/site-remains.jpg" width="1100" height="1080" alt="철거 현장에 남겨진 고양이의 흔적"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>잔해 속 고양이 유해</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/site-cat.jpg" width="1100" height="1100" alt="공사장에 남겨진 고양이"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>아스팔트 위 고양이</figcaption>
+      </figure>
+    </div>
+
+    <p>경기도 하남 교산지구는 686만 제곱미터, 208만 평에 이르는 개발 현장입니다. 사람들이 거의 다 떠난 지금도 그곳에는 천 마리 가까운 고양이가 남아 있는 것으로 추정됩니다.</p>
+    <p>그 고양이들의 밥을 챙기는 사람은 한 명입니다. 하루 열 시간 넘게 열다섯 곳을 돌며 사료 오십 킬로그램을 나릅니다. 매일.</p>
+
+
+
+    <h2>왜 아무도 막지 못하나</h2>
+    <p>현행법은 재개발을 시작할 때 <b>사람의 이주대책은 반드시 세우도록</b> 하고 있습니다.</p>
+    <p>같은 땅에 살던 동물에 대해서는 아무것도 요구하지 않습니다.</p>
+    <p class="tight">실태조사 의무 없음. 구조 계획 의무 없음. 비용 부담 주체 없음. 지키지 않아도 제재 없음.</p>
+    <p>그래서 지금 이 문제는 전적으로 개인의 몫입니다. 자기 돈으로 사료를 사고, 자기 시간을 들여 공사장을 돌고, 포기하면 그 동네 고양이는 그대로 죽습니다. 개인의 선의가 끊기는 순간 아무 대책이 없는 구조입니다.</p>
+    <p>일반적인 중성화(TNR)로도 해결되지 않습니다. TNR은 수술 후 살던 자리로 돌려보내는 것을 전제로 하는데, 재개발 지역은 그 자리가 사라지기 때문입니다.</p>
+
+    <h2>이 법이 요구하는 것</h2>
+    <ul class="demands">
+      <li><b>하나.</b> 사업 승인 전에 그 구역에 어떤 동물이 살고 있는지 조사할 것</li>
+      <li><b>둘.</b> 착공 전에 구조와 안전한 이주 계획을 세우고 실제로 시행할 것</li>
+      <li><b>셋.</b> 시행사와 지자체가 동물보호단체·전문가와 함께 진행할 것</li>
+      <li><b>넷.</b> 그 비용을 국가와 지자체가 지원할 근거를 만들 것</li>
+      <li><b>다섯.</b> 보호조치 없이 공사를 강행하면 제재할 것</li>
+    </ul>
+
+    <h2>우리가 해온 것들</h2>
+    <p>7월 8일 동대문구청 앞에서 200여 명이 모여 급식소 철거에 반대했습니다. 7월 29일에는 재개발 지역 동물 구조를 요구하는 기자회견을 열었고, 8월 8일 다시 거리에 섰습니다.</p>
+    <p>하지만 거리에서 외치는 것만으로는 바뀌지 않습니다. <b>이 청원에 동의해 주세요.</b></p>
+
+    <div class="gallery press">
+      <figure class="ph">
+        <img src="images/web/rally-0708-wide.jpg" width="760" height="563" alt="동대문구청 앞에 모인 고양이 급식소 지키기 전국행동 참가자들과 현수막"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>7/8 고양이 급식소 지키기 전국행동<br>동대문구청 앞 · 200여 명</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/rally-0708-signs.jpg" width="760" height="443" alt="고양이 가면을 쓰고 「급식소 철거 약자에 대한 폭력」 손팻말을 든 참가자들"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>「급식소 철거, 약자에 대한 폭력」<br>7/8 고급행동 집회</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/press-0729-sign.jpg" width="760" height="506" alt="「동물은 철거대상 아니다」 손팻말을 든 기자회견 참가자"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>「동물은 철거대상 아니다」<br>7/29 기자회견 현장</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/press-0729-wide.jpg" width="760" height="506" alt="재개발 지역 길고양이 보호를 요구하는 기자회견 현장"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>7/29 기자회견 전경<br>현수막과 참가자들</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/rally-0808-booth.jpg" width="760" height="570" alt="고양이 공존 집회 현장"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>8/8 길고양이 공존 집회</figcaption>
+      </figure>
+      <figure class="ph">
+        <img src="images/web/rally-0808-crowd.jpg" width="760" height="570" alt="고양이 공존 집회에 모인 시민들"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>8/8 집회에 모인 시민들</figcaption>
+      </figure>
+    </div>
+
+      <figure class="ph">
+        <img src="images/web/rescue-volunteer.jpg" width="1100" height="825" alt="재개발 구역에서 고양이를 구조하는 봉사자"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>봉사자들의 구조 작업 현장</figcaption>
+      </figure>
+
+    <h2>함께하는 단체들</h2>
+    <p class="orgs">고양이급식소전국행동<span class="sep">·</span> 동물권단체케어<span class="sep">·</span> 어울림<span class="sep">·</span> 전국재개발동물구호연대<span class="sep">·</span> 한국동물보호연합<span class="sep">·</span> 헬프캣츠</p>
+
+
+    <div class="closing">
+      <figure class="ph">
+        <img src="images/web/alive-cats.jpg" width="825" height="1100"
+             alt="반쯤 비워진 골목, 상가 앞에 놓인 밥그릇에서 밥을 먹고 있는 길고양이 세 마리"
+             loading="lazy" decoding="async" onerror="imgFail(this)">
+        <figcaption>재개발 현장에 아직 남아 있는 고양이들</figcaption>
+      </figure>
+      <p>지금 이 순간에도 그 동네에는 고양이가 살아 있습니다.</p>
+      <p class="last"><span id="close-date"></span>까지입니다.</p>
+    </div>
+
+    <div class="cta-bottom">
+      <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
+      <button class="btn-primary" id="btn-sign-2">서명하러 가기</button>
+    </div>
+  </section>
+</div>
+
+<!-- 공유 카드 원본 (화면 밖) -->
+<div id="card">
+  <div class="c-top"></div>
+  <div class="c-name" id="c-name" style="display:none"></div>
+  <canvas id="card-cat" width="712" height="712"></canvas>
+  <div class="c-lead">제가 서명했을 때,</div>
+  <div class="c-big"><em id="c-count">–</em>명이<br>함께하고 있었습니다</div>
+  <div class="c-petition">「재개발·재건축 지역 길고양이<br>구조 및 안전 이소 의무화 특별법」</div>
+  <div class="c-deadline" id="c-deadline"></div>
+  <div class="c-goal">5만 명이 모이면 국회가 심사합니다</div>
+  <div class="c-space"></div>
+  <div class="c-url" id="c-url"></div>
+</div>
+
+<script>
+/* ==================================================================
+   설정
+================================================================== */
+const PETITION_URL = "https://petitions.assembly.go.kr/proceed/onGoingAll/57313935A03C4654E064B49691C6967B?utm_source=catsite&utm_medium=web";
+const GOAL = 50000;
+const DEADLINE = "2026-09-03";
+// 카드 맨 아래 한 줄. 나중에 이 사이트의 짧은 도메인을 넣는다.
+const CARD_FOOTER = "";
+const CAT_UNIT = 200;   // 고양이 한 마리가 나타내는 사람 수
+const FALLBACK = { count: 5816, updated: "2026-08-09" };
+
+const state = { count: FALLBACK.count, updated: FALLBACK.updated };
+
+/* 카드에 나오는 고양이는 숫자가 아니라 방문자마다 다르게 뽑는다.
+   숫자가 며칠째 그대로여도 사람마다 다른 고양이를 받는다. */
+const VISITOR_SEED = 1 + Math.floor(Math.random() * 2000000000);
+
+function fmt(n) { return n.toLocaleString("ko-KR"); }
+
+async function loadCount() {
+  try {
+    const res = await fetch("count.json?t=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const c = Number(data.count);
+    if (!Number.isFinite(c) || c < 0) throw new Error("bad count");
+    state.count = Math.floor(c);
+    state.updated = String(data.updated || FALLBACK.updated);
+  } catch (e) {
+    console.warn("count.json 로드 실패, 기본값 사용:", e);
+  }
+}
+
+/* ==================================================================
+   고양이 생성기 — 서명 번호 n → 항상 같은 고양이
+================================================================== */
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const COATS = {
+  cheese:   { name: "치즈",   base: "#E8A24A", mark: "#CB7622", belly: "#F9E6C9", tiny: "#E89A3C", pattern: "tabby"  },
+  mackerel: { name: "고등어", base: "#98A0AB", mark: "#5C6470", belly: "#E2E6EB", tiny: "#7C838D", pattern: "tabby"  },
+  black:    { name: "까망",   base: "#45454F", mark: "#2E2E38", belly: "#5C5C69", tiny: "#3E3E48", pattern: "solid"  },
+  calico:   { name: "삼색",   base: "#EDE3D3", mark: "#3A3A44", belly: "#FAF5EB", tiny: "#D9A06A", pattern: "calico", accent: "#E29A4A" },
+  // 흰냥은 순백이면 크림색 배경에서 사라진다 → 밝은 웜그레이로
+  white:    { name: "흰냥",   base: "#E8E2D9", mark: "#C3BAA9", belly: "#F2EDE6", tiny: "#BDB4A3", pattern: "solid"  },
+  tuxedo:   { name: "턱시도", base: "#3B3B45", mark: "#2A2A33", belly: "#FBF8F3", tiny: "#2C2C35", pattern: "tuxedo" },
+  cow:      { name: "젖소",   base: "#EFE9DD", mark: "#33333B", belly: "#FFFFFF", tiny: "#A9A49B", pattern: "calico", accent: "#33333B" },
+  point:    { name: "샴",     base: "#E6D8C3", mark: "#6B5847", belly: "#F3E9D9", tiny: "#BFA98C", pattern: "point"  }
+};
+const COAT_WEIGHTS = [
+  ["cheese", 22], ["mackerel", 22], ["black", 14], ["calico", 12],
+  ["white", 10], ["tuxedo", 10], ["cow", 6], ["point", 4]
+];
+
+/* 눈 색은 털색과 따로 굴린다 */
+const EYES = { yellow: "#E3C13C", green: "#7FA45C", blue: "#6BA3C4", amber: "#C98A22" };
+const EYE_WEIGHTS = [["green", 32], ["yellow", 28], ["amber", 24], ["blue", 16]];
+
+function pickWeighted(r, table) {
+  const total = table.reduce((s, x) => s + x[1], 0);
+  let acc = 0;
+  const t = r * total;
+  for (const [key, w] of table) { acc += w; if (t < acc) return key; }
+  return table[0][0];
+}
+
+function generateCat(n) {
+  const rnd = mulberry32(((n >>> 0) * 2654435761) % 4294967296);
+  const coatKey = pickWeighted(rnd(), COAT_WEIGHTS);
+  const pose = rnd() < 0.6 ? "sit" : "stand";
+  const t = rnd();
+  const tail = t < 0.4 ? "up" : (t < 0.75 ? "curl" : "low");
+  const earAngle = rnd() * 2 - 1;   // -1(모음) ~ +1(벌림)
+  const eyeMood = rnd();            // 눈 뜬 정도
+  const earTip = rnd() < 0.34;      // 중성화(TNR) 표식 — 왼쪽 귀 끝을 자른 자국
+
+  // 눈 색: 샴은 파란 눈, 드물게 오드아이
+  const oddEye = rnd() < 0.04;
+  const roll = rnd();
+  let eyeL, eyeR;
+  if (coatKey === "point") {
+    eyeL = eyeR = EYES.blue;
+  } else if (oddEye) {
+    eyeL = EYES.blue;
+    eyeR = roll < 0.5 ? EYES.yellow : EYES.amber;
+  } else {
+    eyeL = eyeR = EYES[pickWeighted(roll, EYE_WEIGHTS)];
+  }
+
+  return { n, coatKey, coat: COATS[coatKey], pose, tail, earAngle, eyeMood, earTip, eyeL, eyeR };
+}
+
+/* ==================================================================
+   기하 — tiny/large 공용 (100×100 단위 좌표, 오른쪽을 봄)
+================================================================== */
+const GEO = {
+  sit: {
+    head: { cx: 44, cy: 34, rx: 24, ry: 22 },
+    earL: { bx: 20, by: 34, tx: 24, ty: 5,  ix: 42, iy: 21 },
+    earR: { bx: 68, by: 34, tx: 64, ty: 5,  ix: 58, iy: 21 },
+    tail: {
+      up:   { x0: 61, y0: 88, cx: 97, cy: 88, x1: 87, y1: 40 },
+      curl: { x0: 61, y0: 90, cx: 99, cy: 78, x1: 71, y1: 57 },
+      low:  { x0: 61, y0: 91, cx: 95, cy: 99, x1: 96, y1: 68 }
+    }
+  },
+  stand: {
+    head: { cx: 24, cy: 42, rx: 18, ry: 17 },
+    earL: { bx: 7,  by: 42, tx: 10, ty: 14, ix: 23, iy: 28 },
+    earR: { bx: 41, by: 42, tx: 38, ty: 14, ix: 25, iy: 28 },
+    tail: {
+      up:   { x0: 71, y0: 56, cx: 97, cy: 52, x1: 89, y1: 14 },
+      curl: { x0: 71, y0: 56, cx: 99, cy: 40, x1: 76, y1: 24 },
+      low:  { x0: 71, y0: 58, cx: 95, cy: 76, x1: 97, y1: 46 }
+    }
+  }
+};
+
+function earSpread(cat) { return cat.earAngle * 5; }
+
+/* 귀 윤곽점. 중성화 표식이 있으면 끝을 평평하게 자른다. */
+const EAR_CUT = 0.58;
+const lerpPt = (p, q, u) => ({ x: p.x + (q.x - p.x) * u, y: p.y + (q.y - p.y) * u });
+function earPoints(b, t, i, clipped) {
+  return clipped ? [b, lerpPt(b, t, EAR_CUT), lerpPt(i, t, EAR_CUT), i] : [b, t, i];
+}
+function earsOf(cat, G, es) {
+  return [
+    earPoints({ x: G.earL.bx, y: G.earL.by }, { x: G.earL.tx - es, y: G.earL.ty },
+              { x: G.earL.ix, y: G.earL.iy }, cat.earTip),   // 왼쪽 귀에만 표식
+    earPoints({ x: G.earR.bx, y: G.earR.by }, { x: G.earR.tx + es, y: G.earR.ty },
+              { x: G.earR.ix, y: G.earR.iy }, false)
+  ];
+}
+function traceEar(g, pts) { pts.forEach((p, i) => i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y)); }
+
+function pathHead(g, cat) {
+  const G = GEO[cat.pose], h = G.head, es = earSpread(cat);
+  const [L, R] = earsOf(cat, G, es);
+  g.beginPath();
+  traceEar(g, L);
+  R.slice().reverse().forEach(p => g.lineTo(p.x, p.y));
+  g.closePath();
+  g.moveTo(h.cx + h.rx, h.cy);
+  g.ellipse(h.cx, h.cy, h.rx, h.ry, 0, 0, Math.PI * 2);
+}
+
+function pathBody(g, cat) {
+  g.beginPath();
+  if (cat.pose === "sit") {
+    g.moveTo(26, 96);
+    g.quadraticCurveTo(29, 58, 42, 51);
+    g.lineTo(58, 51);
+    g.quadraticCurveTo(67, 60, 70, 96);
+    g.closePath();
+  } else {
+    g.moveTo(30, 46);
+    g.lineTo(62, 46);
+    g.quadraticCurveTo(76, 46, 76, 60);
+    g.quadraticCurveTo(76, 76, 62, 76);
+    g.lineTo(30, 76);
+    g.quadraticCurveTo(17, 76, 17, 61);
+    g.quadraticCurveTo(17, 46, 30, 46);
+    g.closePath();
+    g.moveTo(26, 68); g.lineTo(37, 68); g.lineTo(37, 92);
+    g.quadraticCurveTo(37, 95, 31.5, 95);
+    g.quadraticCurveTo(26, 95, 26, 92); g.closePath();
+    g.moveTo(57, 68); g.lineTo(68, 68); g.lineTo(68, 92);
+    g.quadraticCurveTo(68, 95, 62.5, 95);
+    g.quadraticCurveTo(57, 95, 57, 92); g.closePath();
+  }
+}
+
+function strokeTail(g, cat, width, color) {
+  const t = GEO[cat.pose].tail[cat.tail];
+  g.strokeStyle = color;
+  g.lineWidth = width;
+  g.lineCap = "round";
+  g.beginPath();
+  g.moveTo(t.x0, t.y0);
+  g.quadraticCurveTo(t.cx, t.cy, t.x1, t.y1);
+  g.stroke();
+}
+
+/* ==================================================================
+   렌더 A — 작은 실루엣 (필드용)
+   6~10px에서 읽혀야 하므로 큰 렌더와 비례를 따로 쓴다.
+   귀를 과장하고, 목을 잘록하게 하고, 꼬리를 가늘게.
+================================================================== */
+const GEO_TINY = {
+  sit: {
+    head: { cx: 42, cy: 38, rx: 26, ry: 24 },
+    ear: [[16, 34], [18, 2], [40, 22], [68, 34], [66, 2], [44, 22]],
+    tail: {
+      up:   { x0: 62, y0: 92, cx: 96, cy: 90,  x1: 88, y1: 46 },
+      curl: { x0: 62, y0: 93, cx: 98, cy: 82,  x1: 74, y1: 62 },
+      low:  { x0: 62, y0: 93, cx: 94, cy: 100, x1: 96, y1: 74 }
+    }
+  },
+  stand: {
+    head: { cx: 23, cy: 44, rx: 21, ry: 19 },
+    ear: [[3, 40], [6, 10], [24, 28], [43, 40], [40, 10], [26, 28]],
+    tail: {
+      up:   { x0: 72, y0: 58, cx: 97, cy: 54, x1: 90, y1: 16 },
+      curl: { x0: 72, y0: 58, cx: 99, cy: 42, x1: 78, y1: 26 },
+      low:  { x0: 72, y0: 60, cx: 96, cy: 78, x1: 98, y1: 50 }
+    }
+  }
+};
+
+function drawCatTiny(g, cat, x, y, s, color) {
+  const k = s / 100;
+  const G = GEO_TINY[cat.pose], e = G.ear, es = earSpread(cat), h = G.head;
+  g.save();
+  g.translate(x, y);
+  g.scale(k, k);
+  g.fillStyle = color;
+  g.strokeStyle = color;
+  g.lineJoin = "round";
+  g.lineCap = "round";
+
+  // 꼬리 — 최소 0.8 CSS px 굵기 보장
+  const t = G.tail[cat.tail];
+  g.lineWidth = Math.max(11, 0.8 / k);
+  g.beginPath();
+  g.moveTo(t.x0, t.y0);
+  g.quadraticCurveTo(t.cx, t.cy, t.x1, t.y1);
+  g.stroke();
+
+  // 몸통 (+ 서 있을 때 다리)
+  g.beginPath();
+  if (cat.pose === "sit") {
+    g.moveTo(24, 97);
+    g.quadraticCurveTo(30, 66, 38, 58);
+    g.lineTo(50, 58);
+    g.quadraticCurveTo(62, 66, 68, 97);
+    g.closePath();
+  } else {
+    g.moveTo(30, 50);
+    g.lineTo(62, 50);
+    g.quadraticCurveTo(78, 50, 78, 64);
+    g.quadraticCurveTo(78, 78, 62, 78);
+    g.lineTo(30, 78);
+    g.quadraticCurveTo(16, 78, 16, 64);
+    g.quadraticCurveTo(16, 50, 30, 50);
+    g.closePath();
+    g.moveTo(25, 70); g.lineTo(36, 70); g.lineTo(36, 96); g.lineTo(25, 96); g.closePath();
+    g.moveTo(58, 70); g.lineTo(69, 70); g.lineTo(69, 96); g.lineTo(58, 96); g.closePath();
+  }
+  g.fill();
+
+  // 귀 + 머리 (중성화 표식이면 왼쪽 귀 끝이 평평하다)
+  const L = earPoints({ x: e[0][0], y: e[0][1] }, { x: e[1][0] - es, y: e[1][1] },
+                      { x: e[2][0], y: e[2][1] }, cat.earTip);
+  const R = earPoints({ x: e[3][0], y: e[3][1] }, { x: e[4][0] + es, y: e[4][1] },
+                      { x: e[5][0], y: e[5][1] }, false);
+  g.beginPath();
+  traceEar(g, L);
+  R.slice().reverse().forEach(p => g.lineTo(p.x, p.y));
+  g.closePath();
+  g.fill();
+  g.beginPath();
+  g.ellipse(h.cx, h.cy, h.rx, h.ry, 0, 0, Math.PI * 2);
+  g.fill();
+
+  g.restore();
+}
+
+/* ==================================================================
+   렌더 B — 큰 상세 (공유 카드용)
+================================================================== */
+function drawCatLarge(g, cat, x, y, s) {
+  const k = s / 100;
+  const c = cat.coat;
+  const G = GEO[cat.pose], h = G.head, es = earSpread(cat);
+  g.save();
+  g.translate(x, y);
+  g.scale(k, k);
+  g.lineJoin = "round";
+
+  /* 꼬리 (몸 뒤) — 샴은 꼬리가 진하다 */
+  strokeTail(g, cat, 15, c.pattern === "point" ? c.mark : c.base);
+  if (c.pattern === "tabby") {
+    g.save();
+    g.setLineDash([7, 11]);
+    strokeTail(g, cat, 15, c.mark);
+    g.restore();
+  }
+
+  /* 몸통 */
+  g.fillStyle = c.base;
+  pathBody(g, cat); g.fill();
+
+  /* 몸통 무늬 */
+  g.save();
+  pathBody(g, cat); g.clip();
+  if (c.pattern === "tabby") {
+    g.strokeStyle = c.mark; g.lineWidth = 6; g.lineCap = "round";
+    const bars = cat.pose === "sit"
+      ? [[30, 58, 46, 62], [28, 70, 48, 74], [29, 82, 50, 86]]
+      : [[34, 44, 30, 62], [46, 44, 42, 64], [58, 44, 54, 62]];
+    bars.forEach(b => {
+      g.beginPath(); g.moveTo(b[0], b[1]);
+      g.quadraticCurveTo((b[0] + b[2]) / 2 + 3, (b[1] + b[3]) / 2, b[2], b[3]);
+      g.stroke();
+    });
+  } else if (c.pattern === "calico") {
+    g.fillStyle = c.accent;
+    g.beginPath(); g.ellipse(36, 66, 13, 15, -0.3, 0, Math.PI * 2); g.fill();
+    g.fillStyle = c.mark;
+    g.beginPath(); g.ellipse(62, 76, 11, 13, 0.4, 0, Math.PI * 2); g.fill();
+  } else if (c.pattern === "point") {
+    g.fillStyle = c.mark; g.globalAlpha = 0.35;   // 뒷다리 쪽이 살짝 진해진다
+    if (cat.pose === "sit") { g.beginPath(); g.ellipse(30, 90, 14, 12, 0, 0, Math.PI * 2); g.fill(); }
+    else { g.beginPath(); g.ellipse(66, 88, 12, 11, 0, 0, Math.PI * 2); g.fill(); }
+    g.globalAlpha = 1;
+  }
+  g.fillStyle = c.belly;
+  g.globalAlpha = c.pattern === "tuxedo" ? 0.95 : (c.pattern === "calico" ? 0.75 : 0.55);
+  if (c.pattern === "tuxedo") {
+    if (cat.pose === "sit") { g.beginPath(); g.ellipse(47, 82, 13, 22, 0, 0, Math.PI * 2); g.fill(); }
+    else { g.beginPath(); g.ellipse(34, 70, 13, 13, 0, 0, Math.PI * 2); g.fill(); }
+  } else if (cat.pose === "sit") {
+    g.beginPath(); g.ellipse(48, 84, 15, 16, 0, 0, Math.PI * 2); g.fill();
+  } else {
+    g.beginPath(); g.ellipse(46, 74, 22, 9, 0, 0, Math.PI * 2); g.fill();
+  }
+  g.globalAlpha = 1;
+  g.restore();
+
+  /* 앞발 */
+  g.fillStyle = c.belly;
+  if (cat.pose === "sit") {
+    g.beginPath(); g.ellipse(38, 93, 8, 5, 0, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.ellipse(56, 93, 8, 5, 0, 0, Math.PI * 2); g.fill();
+  } else {
+    g.beginPath(); g.ellipse(31.5, 92, 6, 4, 0, 0, Math.PI * 2); g.fill();
+    g.beginPath(); g.ellipse(62.5, 92, 6, 4, 0, 0, Math.PI * 2); g.fill();
+  }
+
+  /* 머리 */
+  g.fillStyle = c.base;
+  pathHead(g, cat); g.fill();
+
+  const earPolys = earsOf(cat, G, es);
+
+  /* 샴은 귀가 진하다 */
+  if (c.pattern === "point") {
+    g.fillStyle = c.mark;
+    earPolys.forEach(pts => { g.beginPath(); traceEar(g, pts); g.closePath(); g.fill(); });
+  }
+
+  /* 귀 안쪽 — 중성화 표식이면 안쪽 분홍도 같이 잘린다 */
+  g.fillStyle = "#E9A9A4";
+  earPolys.forEach((pts, idx) => {
+    const b = pts[0], i = pts[pts.length - 1];
+    const t = pts.length === 3 ? pts[1] : lerpPt(pts[1], pts[2], 0.5);
+    const p0 = { x: b.x + (i.x - b.x) * 0.28, y: b.y + (i.y - b.y) * 0.3 };
+    const p1 = { x: t.x + (b.x - t.x) * 0.28, y: t.y + (b.y - t.y) * 0.28 };
+    const p2 = { x: i.x + (b.x - i.x) * 0.28, y: i.y + (b.y - i.y) * 0.28 };
+    g.beginPath();
+    traceEar(g, earPoints(p0, p1, p2, pts.length === 4));
+    g.closePath(); g.fill();
+  });
+
+  /* 머리 무늬 — 귀에는 칠하지 않도록 머리 타원에만 가둔다 */
+  g.save();
+  g.beginPath(); g.ellipse(h.cx, h.cy, h.rx, h.ry, 0, 0, Math.PI * 2); g.clip();
+  if (c.pattern === "tabby") {
+    g.strokeStyle = c.mark; g.lineWidth = 4; g.lineCap = "round";
+    [[-10, -16, -4, -6], [0, -19, 0, -8], [10, -16, 4, -6]].forEach(o => {
+      g.beginPath(); g.moveTo(h.cx + o[0], h.cy + o[1]);
+      g.lineTo(h.cx + o[2], h.cy + o[3]); g.stroke();
+    });
+  } else if (c.pattern === "calico") {
+    const single = c.accent === c.mark;          // 젖소는 한쪽에만 크게
+    g.fillStyle = c.mark;
+    g.beginPath();
+    g.ellipse(h.cx + 12, h.cy - 6, single ? 14 : 10, single ? 15 : 11, 0, 0, Math.PI * 2);
+    g.fill();
+    if (!single) {
+      g.fillStyle = c.accent;
+      g.beginPath(); g.ellipse(h.cx - 13, h.cy - 7, 11, 12, 0, 0, Math.PI * 2); g.fill();
+    }
+  } else if (c.pattern === "point") {
+    g.fillStyle = c.mark; g.globalAlpha = 0.5;    // 샴 마스크
+    g.beginPath(); g.ellipse(h.cx, h.cy + 9, 15, 12, 0, 0, Math.PI * 2); g.fill();
+    g.globalAlpha = 1;
+  } else if (c.pattern === "tuxedo") {
+    g.fillStyle = c.belly;                        // 흰 주둥이
+    g.beginPath(); g.ellipse(h.cx, h.cy + 11, 11, 8, 0, 0, Math.PI * 2); g.fill();
+  }
+  g.restore();
+
+  /* 얼굴 */
+  const fx = h.cx, fy = h.cy, sc = h.rx / 24;
+  const eyeY = fy + 1 * sc, eyeDX = 9 * sc;
+  const lidH = 0.7 + cat.eyeMood * 0.45;
+  [-1, 1].forEach(d => {
+    g.fillStyle = d < 0 ? cat.eyeL : cat.eyeR;
+    g.beginPath(); g.ellipse(fx + d * eyeDX, eyeY, 5 * sc, 5.6 * sc * lidH, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "#22222A";
+    g.beginPath(); g.ellipse(fx + d * eyeDX, eyeY, 1.9 * sc, 4.6 * sc * lidH, 0, 0, Math.PI * 2); g.fill();
+    g.fillStyle = "rgba(255,255,255,0.9)";
+    g.beginPath(); g.ellipse(fx + d * eyeDX - 1.6 * sc, eyeY - 2 * sc * lidH, 1.3 * sc, 1.3 * sc, 0, 0, Math.PI * 2); g.fill();
+  });
+  g.fillStyle = "#D98A86";
+  g.beginPath();
+  g.moveTo(fx - 3 * sc, fy + 10 * sc); g.lineTo(fx + 3 * sc, fy + 10 * sc);
+  g.lineTo(fx, fy + 13.5 * sc); g.closePath(); g.fill();
+  g.strokeStyle = "rgba(40,36,34,0.55)"; g.lineWidth = 1.4 * sc; g.lineCap = "round";
+  g.beginPath();
+  g.moveTo(fx, fy + 13.5 * sc);
+  g.quadraticCurveTo(fx - 2 * sc, fy + 17 * sc, fx - 5 * sc, fy + 15 * sc);
+  g.moveTo(fx, fy + 13.5 * sc);
+  g.quadraticCurveTo(fx + 2 * sc, fy + 17 * sc, fx + 5 * sc, fy + 15 * sc);
+  g.stroke();
+  g.strokeStyle = "rgba(60,55,50,0.35)"; g.lineWidth = 1.1 * sc;
+  [-1, 1].forEach(d => {
+    [-3, 0, 3].forEach(o => {
+      g.beginPath();
+      g.moveTo(fx + d * 5 * sc, fy + (10 + o * 0.4) * sc);
+      g.quadraticCurveTo(fx + d * 20 * sc, fy + (8 + o) * sc, fx + d * 30 * sc, fy + (6 + o * 1.7) * sc);
+      g.stroke();
+    });
+  });
+
+  g.restore();
+}
+
+/* ==================================================================
+   마일스톤 필드
+================================================================== */
+const canvas = document.getElementById("field");
+const ctx = canvas.getContext("2d");
+
+/* 캔버스를 제외한 나머지 UI(숫자 + 버튼)가 실제로 차지하는 높이를 실측한다.
+   상수로 어림잡으면 화면이 짧은 기기에서 버튼이 접히는 곳 아래로 내려간다. */
+function reservedHeight() {
+  const wrap = document.querySelector(".wrap");
+  const cta = document.querySelector(".cta");
+  const prev = canvas.style.height;
+  canvas.style.height = "0px";                       // 캔버스를 잠시 접고
+  const top = wrap.getBoundingClientRect().top;
+  const bottom = cta.getBoundingClientRect().bottom; // 결과 이미지(#result)는 제외
+  const padBottom = parseFloat(getComputedStyle(wrap).paddingBottom) || 0;
+  canvas.style.height = prev;
+  return (bottom - top) + padBottom;
+}
+
+function fieldSize() {
+  const box = document.getElementById("field-box");
+  const w = box.clientWidth;
+  const vh = (window.visualViewport && window.visualViewport.height) || window.innerHeight;
+  // 남는 높이를 전부 필드에 준다 → 버튼은 항상 첫 화면 안에 남는다
+  const h = Math.max(140, vh - reservedHeight() - 4);
+  return { w, h };
+}
+
+const GRAY = "#E4DED3";          // 아주 옅은 단색 — 채워진 쪽과 경계가 한눈에 보이도록
+const TOTAL_CATS = GOAL / CAT_UNIT;   // 50,000 ÷ 200 = 250마리
+
+/* 열 수는 250을 나누어떨어뜨리는 값 중에서 고른다.
+   그래야 마지막 줄까지 꽉 차고, 빈칸을 채우는 여분의 고양이가 생기지 않는다. */
+function chooseColumns(total, w, h) {
+  const portrait = window.innerHeight >= window.innerWidth;   // 세로 화면이면 세로로 긴 배치만
+  let best = null, any = null;
+  for (let cols = 1; cols <= total; cols++) {
+    if (total % cols) continue;
+    const rows = total / cols;
+    const cell = Math.min(w / cols, h / rows);
+    const cand = { cols, rows, cell };
+    if (!any || cell > any.cell) any = cand;
+    if (portrait && rows < cols) continue;
+    if (!best || cell > best.cell) best = cand;
+  }
+  return best || any;
+}
+
+function drawField() {
+  const { w, h } = fieldSize();
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const { cols, rows, cell } = chooseColumns(TOTAL_CATS, w, h);
+  const filled = Math.floor(state.count / CAT_UNIT);   // 색이 들어가는 고양이 수
+  const gw = cols * cell, gh = rows * cell;
+  canvas.style.width = gw + "px";
+  canvas.style.height = gh + "px";
+  canvas.width = Math.round(gw * dpr);
+  canvas.height = Math.round(gh * dpr);
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, gw, gh);
+  const offX = 0, offY = 0;
+  const pad = cell * 0.08;
+  const size = cell - pad * 2;
+
+  for (let i = 0; i < TOTAL_CATS; i++) {
+    const cat = generateCat(i + 1);
+    const x = offX + (i % cols) * cell + pad;
+    const y = offY + ((i / cols) | 0) * cell + pad;
+    drawCatTiny(ctx, cat, x, y, size, i < filled ? cat.coat.tiny : GRAY);
+  }
+}
+
+function renderCountdown() {
+  const [, dm, dd] = DEADLINE.split("-").map(Number);
+  document.getElementById("close-date").textContent = dm + "월 " + dd + "일";
+
+  const left = daysLeft();
+  const remain = Math.max(0, GOAL - state.count);
+  let text;
+  if (left < 0) text = "서명이 마감되었습니다";
+  else if (remain === 0) text = "목표 인원을 채웠습니다";
+  else if (left === 0) text = "오늘이 마감일입니다 · " + fmt(remain) + "명 남았습니다";
+  else text = "마감까지 " + left + "일";
+  document.getElementById("countdown").textContent = text;
+}
+
+function renderNumbers() {
+  document.getElementById("n-count").textContent = fmt(state.count);
+  document.getElementById("n-goal").textContent = fmt(GOAL);
+  document.getElementById("n-scale").textContent = "고양이 1마리 = " + fmt(CAT_UNIT) + "명";
+}
+
+let resizeTimer = null;
+function onResize() {
+  // 이름 입력 중에는 키보드 때문에 화면 높이가 바뀐다 → 다시 그리지 않는다
+  if (document.activeElement && document.activeElement.id === "name") return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(drawField, 120);
+}
+window.addEventListener("resize", onResize);
+window.addEventListener("orientationchange", onResize);
+// iOS 주소창이 접히고 펴질 때 실제 보이는 높이가 바뀐다
+if (window.visualViewport) window.visualViewport.addEventListener("resize", onResize);
+
+/* ==================================================================
+   2단계 흐름 — 청원 사이트 방문 → 돌아오면 카드 만들기
+   서명 여부는 확인할 수 없다. 확인하지 않는 문구만 쓴다.
+================================================================== */
+const btnSign = document.getElementById("btn-sign");
+const btnDone = document.getElementById("btn-done");
+const linkDone = document.getElementById("link-done");
+const resultBox = document.getElementById("result");
+let leftForPetition = false;
+
+function revealDone() {
+  if (!btnDone.classList.contains("hidden")) return;
+  btnDone.classList.remove("hidden");
+  document.getElementById("namebox").classList.remove("hidden");
+  btnSign.textContent = "다시 서명 페이지 열기";
+  if (btnSign2) btnSign2.textContent = "다시 서명 페이지 열기";
+  drawField();   // 버튼이 하나 늘었으니 필드를 그만큼 줄인다
+}
+
+const btnSign2 = document.getElementById("btn-sign-2");   // 글 다 읽고 맨 아래에서 누르는 버튼
+
+function goSign() {
+  leftForPetition = true;
+  window.open(PETITION_URL, "_blank", "noopener");
+  // 인앱 브라우저는 blur/visibilitychange가 안 오기도 한다 → 시간으로도 연다
+  setTimeout(revealDone, 2000);
+}
+btnSign.addEventListener("click", goSign);
+if (btnSign2) btnSign2.addEventListener("click", goSign);
+["visibilitychange", "focus", "pageshow"].forEach(ev => {
+  window.addEventListener(ev, () => {
+    if (leftForPetition && document.visibilityState !== "hidden") revealDone();
+  });
+});
+// 새로고침으로 상태가 날아간 경우의 탈출구
+linkDone.addEventListener("click", () => { revealDone(); makeCard(); });
+
+btnDone.addEventListener("click", makeCard);
+
+/* ------------------------------------------------------------------
+   카드 만들기
+------------------------------------------------------------------ */
+const cardEl = document.getElementById("card");
+let cardBlob = null, cardName = "cat-petition.png";
+
+/* 마감까지 남은 날 — 보는 사람 기기의 시간대와 무관하게 한국 날짜로 센다 */
+function daysLeft() {
+  const now = new Date();
+  const kst = new Date(now.getTime() + 9 * 3600 * 1000);   // UTC + 9h = 한국 벽시계
+  const today = Date.UTC(kst.getUTCFullYear(), kst.getUTCMonth(), kst.getUTCDate());
+  const [y, m, d] = DEADLINE.split("-").map(Number);
+  return Math.round((Date.UTC(y, m - 1, d) - today) / 86400000);
+}
+
+function deadlineText() {
+  const [, m, d] = DEADLINE.split("-").map(Number);
+  const date = "(" + m + "월 " + d + "일)";
+  const left = daysLeft();
+  if (left < 0) return "서명 마감 종료";
+  if (left === 0) return "서명 마감 D-DAY " + date;
+  return "서명 마감 D-" + left + " " + date;
+}
+
+/* html2canvas를 못 불러오는 경우(인앱 브라우저 · CDN 차단)를 위한 예비 경로.
+   같은 내용을 캔버스에 직접 그린다. 화면이 깨지는 상태는 만들지 않는다. */
+const CARD_FONT = '"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif';
+
+function cardText(g, text, size, weight, color, y) {
+  g.font = weight + " " + size + "px " + CARD_FONT;
+  g.fillStyle = color;
+  g.fillText(text, 540, y);
+}
+
+/* 색이 다른 두 조각을 한 줄로 가운데 정렬 */
+function cardTwoTone(g, a, aSize, aColor, b, bSize, bColor, y) {
+  g.font = "800 " + aSize + "px " + CARD_FONT;
+  const wa = g.measureText(a).width;
+  g.font = "800 " + bSize + "px " + CARD_FONT;
+  const wb = g.measureText(b).width;
+  const left = 540 - (wa + wb) / 2;
+  g.textAlign = "left";
+  g.font = "800 " + aSize + "px " + CARD_FONT;
+  g.fillStyle = aColor; g.fillText(a, left, y);
+  g.font = "800 " + bSize + "px " + CARD_FONT;
+  g.fillStyle = bColor; g.fillText(b, left + wa, y);
+  g.textAlign = "center";
+}
+
+function drawCardFallback(cat, n, who) {
+  const cv = document.createElement("canvas");
+  cv.width = 1080; cv.height = 1080;
+  const g = cv.getContext("2d");
+  g.fillStyle = "#FFFDF9"; g.fillRect(0, 0, 1080, 1080);
+  g.textAlign = "center"; g.textBaseline = "alphabetic";
+
+  if (who) cardText(g, who + "의 고양이", 34, "400", "#7A6E62", 128);
+  drawCatLarge(g, cat, (1080 - 356) / 2, 150, 356);
+
+  cardText(g, "제가 서명했을 때,", 38, "400", "#4A423A", 558);
+  cardTwoTone(g, fmt(n), 62, "#C4622D", "명이", 50, "#1A1713", 638);
+  cardText(g, "함께하고 있었습니다", 50, "800", "#1A1713", 703);
+  cardText(g, "\u300C재개발\u00B7재건축 지역 길고양이", 26, "400", "#4A423A", 762);
+  cardText(g, "구조 및 안전 이소 의무화 특별법\u300D", 26, "400", "#4A423A", 801);
+  cardText(g, deadlineText(), 29, "700", "#B4442A", 852);
+  cardText(g, "5만 명이 모이면 국회가 심사합니다", 32, "400", "#3B342C", 910);
+  if (CARD_FOOTER) cardText(g, CARD_FOOTER, 22, "400", "#9A9089", 1025);
+  return cv;
+}
+
+/* 약속된 시간 안에 안 끝나면 실패로 처리한다.
+   모바일 사파리에서 html2canvas가 응답 없이 멈추는 경우가 있어, 그때 예비 경로로 넘어가야 한다. */
+function withTimeout(promise, ms, label) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => setTimeout(() => reject(new Error(label + " 시간초과")), ms))
+  ]);
+}
+
+async function makeCard() {
+  btnDone.disabled = true;
+  btnDone.textContent = "카드 만드는 중…";
+  resultBox.innerHTML = "";
+
+  // 누른 순간의 숫자로 만든다 → 다시 읽어온다 (실패하면 기존 값)
+  await loadCount();
+  renderNumbers();
+  renderCountdown();
+  drawField();
+
+  const n = state.count;
+  const cat = generateCat(VISITOR_SEED);
+
+  const g = document.getElementById("card-cat").getContext("2d");
+  g.setTransform(2, 0, 0, 2, 0, 0);   // 2배 비트맵 → 축소되며 안티에일리어싱
+  g.clearRect(0, 0, 356, 356);
+  drawCatLarge(g, cat, 8, 8, 340);
+
+  // 이름은 그리는 데만 쓴다. 저장하지도, 보내지도 않는다.
+  const who = (document.getElementById("name").value || "").trim().slice(0, 12);
+  const nameEl = document.getElementById("c-name");
+  nameEl.textContent = who ? who + "의 고양이" : "";
+  nameEl.style.display = who ? "block" : "none";
+
+  document.getElementById("c-count").textContent = fmt(n);
+  document.getElementById("c-deadline").textContent = deadlineText();
+  document.getElementById("c-url").textContent = CARD_FOOTER;
+
+  // Pretendard가 다 불러와지기 전에 그리면 카드 글꼴이 기본 글꼴로 찍힌다.
+  // 다만 폰트를 기다리다 멈추면 안 되므로 2.5초까지만 기다린다.
+  try {
+    if (document.fonts && document.fonts.ready) await withTimeout(document.fonts.ready, 1500, "폰트");
+  } catch (e) { console.warn(e); }
+
+  let out = null;
+  try {
+    if (!window.html2canvas) throw new Error("html2canvas 없음");
+    out = await withTimeout(html2canvas(cardEl, {
+      backgroundColor: "#FFFDF9",
+      scale: 1, width: 1080, height: 1080,
+      windowWidth: 1080, windowHeight: 1080,
+      logging: false
+    }), 4000, "html2canvas");
+  } catch (e) {
+    console.warn("html2canvas 실패 → 캔버스로 직접 그린다:", e);
+  }
+  if (!out) { try { out = drawCardFallback(cat, n, who); } catch (e2) { console.warn(e2); } }
+
+  try {
+    if (!out) throw new Error("카드 생성 실패");
+    const blob = await withTimeout(
+      new Promise(res => out.toBlob(res, "image/png")), 5000, "이미지 변환");
+    if (!blob) throw new Error("이미지 변환 실패");
+    cardBlob = blob;
+    cardName = "길고양이-특별법-서명-" + n + ".png";
+    showResult(URL.createObjectURL(blob));
+  } catch (e) {
+    console.warn(e);
+    resultBox.innerHTML = '<p class="err">카드를 만들지 못했습니다. 잠시 후 다시 눌러주세요.</p>';
+  }
+  btnDone.disabled = false;
+  btnDone.textContent = "카드 다시 만들기";
+}
+
+function showResult(url) {
+  resultBox.innerHTML =
+    '<img id="card-img" alt="공유 카드" src="' + url + '">' +
+    '<p class="savehint">이미지를 길게 눌러 저장할 수도 있습니다</p>';
+
+  const file = cardBlob ? new File([cardBlob], cardName, { type: "image/png" }) : null;
+  if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+    const b = document.createElement("button");
+    b.className = "btn-primary";
+    b.textContent = "인스타그램에 공유하기";
+    b.addEventListener("click", async () => {
+      try {
+        await navigator.share({ files: [new File([cardBlob], cardName, { type: "image/png" })] });
+      } catch (e) { /* 사용자가 취소한 경우 포함 — 조용히 무시 */ }
+    });
+    resultBox.appendChild(b);
+  }
+
+  const dl = document.createElement("button");
+  dl.className = "btn-ghost";
+  dl.textContent = "이미지 저장하기";
+  dl.addEventListener("click", () => {
+    const a = document.createElement("a");
+    a.href = url; a.download = cardName;
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+  resultBox.appendChild(dl);
+}
+
+(async function init() {
+  await loadCount();
+  renderNumbers();
+  renderCountdown();
+  drawField();
+})();
+</script>
+</body>
+</html>
