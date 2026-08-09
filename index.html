@@ -85,7 +85,10 @@
   .namebox input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
   .namehint { font-size: 12px; color: var(--ink3); margin: 6px 0 0; }
   .again { text-align: center; margin-top: 14px; }
-  .again a { font-size: 13px; color: var(--ink3); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .again a {
+    font-size: 14px; font-weight: 600; color: var(--ink2);
+    text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+  }
 
   /* ---- 결과 ---- */
   #result { margin-top: 18px; }
@@ -309,6 +312,7 @@
     <div class="cta-bottom">
       <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
       <button class="btn-primary" id="btn-sign-2">서명하러 가기</button>
+      <div class="again"><a id="link-done-2">이미 서명하셨나요? 카드 만들기</a></div>
     </div>
   </section>
 </div>
@@ -920,6 +924,14 @@ if (btnSign2) btnSign2.addEventListener("click", goSign);
 });
 // 새로고침으로 상태가 날아간 경우의 탈출구
 linkDone.addEventListener("click", () => { revealDone(); makeCard(); });
+
+const linkDone2 = document.getElementById("link-done-2");
+if (linkDone2) linkDone2.addEventListener("click", async () => {
+  revealDone();
+  await makeCard();
+  // 카드는 화면 위쪽 #result에 생긴다. 아래에서 눌렀으면 그리로 옮겨줘야 한다.
+  document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "center" });
+});
 
 btnDone.addEventListener("click", makeCard);
 
