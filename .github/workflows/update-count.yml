@@ -1,425 +1,70 @@
-Last login: Sun Aug  9 19:29:42 on ttys001
-yenaock@Yenas-MacBook-Air-3 ~ % cd cat-petition
-python3 -m http.server 8000
-Serving HTTP on :: port 8000 (http://[::]:8000/) ...
-::1 - - [09/Aug/2026 19:59:54] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 19:59:54] "GET /count.json?t=1786273194147 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 19:59:58] "GET /count.json?t=1786273198543 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:00:02] "GET /count.json?t=1786273202560 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:00:04] "GET /count.json?t=1786273204593 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:20] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:03:20] "GET /count.json?t=1786273400100 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:21] "GET /count.json?t=1786273401660 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:30] "GET /count.json?t=1786273410075 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:32] "GET /count.json?t=1786273412557 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:35] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:03:35] "GET /count.json?t=1786273415771 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:03:37] "GET /count.json?t=1786273417361 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:07:39] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:07:39] "GET /count.json?t=1786273659653 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:08:01] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:08:01] "GET /count.json?t=1786273681467 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:08:05] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:08:05] "GET /count.json?t=1786273685048 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:08:45] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:08:45] "GET /count.json?t=1786273725587 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:08:47] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:08:47] "GET /count.json?t=1786273727978 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:09:18] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:09:18] "GET /count.json?t=1786273758920 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:09:19] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:09:19] "GET /count.json?t=1786273759701 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:11:01] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:11:01] "GET /count.json?t=1786273861801 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:13:03] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:13:03] "GET /count.json?t=1786273983801 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:13:26] "GET /count.json?t=1786274006485 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:13:33] "GET /count.json?t=1786274013885 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:16:25] code 404, message File not found
-::1 - - [09/Aug/2026 20:16:25] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 20:23:19] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:23:19] code 404, message File not found
-::1 - - [09/Aug/2026 20:23:19] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 20:23:19] "GET /count.json?t=1786274599341 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:23:22] "GET /count.json?t=1786274602632 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:23:28] "GET /count.json?t=1786274608040 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:24:22] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:24:22] code 404, message File not found
-::1 - - [09/Aug/2026 20:24:22] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 20:24:22] "GET /count.json?t=1786274662340 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:24:53] "GET /count.json?t=1786274693400 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:25:09] code 404, message File not found
-::1 - - [09/Aug/2026 20:25:09] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 20:25:35] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:25:35] "GET /count.json?t=1786274735804 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:31:47] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:31:47] "GET /count.json?t=1786275107512 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:31:58] "GET /count.json?t=1786275118510 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:33:17] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:33:17] "GET /count.json?t=1786275197293 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:33:32] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:33:32] "GET /count.json?t=1786275212248 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:46:30] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:46:30] "GET /count.json?t=1786275990639 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:50:14] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:50:14] "GET /count.json?t=1786276214210 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /count.json?t=1786276330764 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /images/web/press-01.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /images/web/press-02.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /images/web/press-04.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /images/web/press-03.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:10] "GET /images/web/field-01.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:11] "GET /images/web/field-03.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:11] "GET /images/web/field-04.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:52:11] "GET /images/web/field-02.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:54:41] "GET /count.json?t=1786276481662 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:41] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:54:44] "GET /count.json?t=1786276484118 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:59:14] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /count.json?t=1786276754162 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:14] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:20] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 20:59:20] "GET /count.json?t=1786276760806 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:00:11] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:00:11] "GET /count.json?t=1786276811150 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:11] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:00:13] "GET /images/web/alive-01.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:06:17] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:06:17] "GET /count.json?t=1786277177042 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:06:17] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:04] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:08:04] "GET /count.json?t=1786277284284 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:08:04] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:04] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:04] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:05] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:19] "GET /count.json?t=1786277299609 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:08:57] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:08:57] "GET /count.json?t=1786277337559 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:20] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:20] "GET /count.json?t=1786277360959 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:20] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:26] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:26] "GET /count.json?t=1786277366937 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:28] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:28] "GET /count.json?t=1786277368152 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:47] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:47] "GET /count.json?t=1786277387962 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:52] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:52] "GET /count.json?t=1786277392820 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:52] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:52] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:52] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET /count.json?t=1786277393614 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:09:53] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:09:53] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:10:51] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:10:51] "GET /count.json?t=1786277451261 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:10:51] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:02] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:14:02] "GET /count.json?t=1786277642461 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:14:02] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:02] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:02] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:03] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:03] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:03] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:03] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:04] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:14:05] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:20:27] "GET /count.json?t=1786278027289 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:27] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:20:30] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:21:10] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:21:10] "GET /count.json?t=1786278070703 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:21:11] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:21:11] "GET /count.json?t=1786278071817 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:21:18] "GET /count.json?t=1786278078960 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:22:47] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:22:47] "GET /count.json?t=1786278167795 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:22:47] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:22:47] "GET /images/icon-180.png HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:23:09] "GET /count.json?t=1786278189307 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:25:43] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /count.json?t=1786278343556 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:25:43] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:26:55] code 404, message File not found
-::1 - - [09/Aug/2026 21:26:55] "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:27:02] "GET /count.json?t=1786278422385 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:27:09] "GET /count.json?t=1786278429723 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:29:15] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:15] "GET /count.json?t=1786278555984 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:29:16] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:17] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:17] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:17] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:17] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:17] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:29:18] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:37:22] "GET /count.json?t=1786279042164 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:37:22] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/field-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/field-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /count.json?t=1786279413477 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/press-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/press-03.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/field-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/press-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/press-04.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/field-02.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:43:33] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:44:27] "GET /count.json?t=1786279467470 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:45:00] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:45:00] "GET /count.json?t=1786279500189 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:46:10] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:46:10] "GET /count.json?t=1786279570888 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:46:10] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:47:11] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:47:11] "GET /count.json?t=1786279631488 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:47:11] "GET /images/web/press-05.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:47:11] "GET /images/web/press-06.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:48:03] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:48:03] "GET /count.json?t=1786279683619 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:48:03] "GET /images/web/press-06.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:48:03] "GET /images/web/press-05.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:48:03] "GET /images/web/alive-01.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:12] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:12] "GET /count.json?t=1786279812817 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/field-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/field-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/field-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-05.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/press-06.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] "GET /images/web/field-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:12] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:19] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:19] "GET /count.json?t=1786279819275 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-05.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-06.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/field-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:19] "GET /count.json?t=1786279819815 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-05.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/press-06.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:19] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:19] "GET /images/web/field-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:20] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:20] "GET /images/web/field-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:20] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:20] "GET /images/web/field-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:20] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:20] "GET /images/web/field-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:23] "GET /count.json?t=1786279823256 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/field-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/field-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/field-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-05.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/press-06.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:23] "GET /images/web/field-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:50:24] "GET /count.json?t=1786279824273 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/field-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/field-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/field-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-01.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-03.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-05.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-04.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/press-06.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:24] code 404, message File not found
-::1 - - [09/Aug/2026 21:50:24] "GET /images/web/field-02.jpg HTTP/1.1" 404 -
-::1 - - [09/Aug/2026 21:50:36] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /count.json?t=1786279836634 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/site-cat.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/site-demolition.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/site-remains.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/rescue-volunteer.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:50:36] "GET /images/web/alive-cats.jpg HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:51:37] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /count.json?t=1786279897458 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:51:37] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET / HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /count.json?t=1786280385980 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/site-cat.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/site-remains.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/site-demolition.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/rescue-volunteer.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:45] "GET /images/web/alive-cats.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 21:59:46] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:02:16] "GET /count.json?t=1786280536621 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:02:16] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:13] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /count.json?t=1786280654003 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:04:14] "GET /images/icon-180.png HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET / HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:09:58] "GET /count.json?t=1786280998322 HTTP/1.1" 200 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/press-0729-sign.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/site-demolition.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/site-remains.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/site-cat.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/rally-0708-signs.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/rally-0708-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/press-0729-wide.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/rally-0808-booth.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/rally-0808-crowd.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/rescue-volunteer.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/web/alive-cats.jpg HTTP/1.1" 304 -
-::1 - - [09/Aug/2026 22:09:58] "GET /images/icon-180.png HTTP/1.1" 304 -
+name: 청원 동의 수 갱신
 
+on:
+  schedule:
+    - cron: '*/5 * * * *'    # 5분마다 (GitHub cron 최소 단위. 혼잡하면 더 늦게 돌 수 있음)
+  workflow_dispatch:          # 버튼 눌러서 바로 실행도 가능
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-count
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 국회 청원 API에서 동의 수 읽기
+        id: fetch
+        run: |
+          API="https://petitions.assembly.go.kr/api/petits/57313935A03C4654E064B49691C6967B?petitId=57313935A03C4654E064B49691C6967B&view=&sttusCode="
+          for i in 1 2 3; do
+            BODY=$(curl -sS -m 30 -H 'Accept: application/json' \
+              -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/120 Safari/537.36' \
+              "$API" || true)
+            COUNT=$(printf '%s' "$BODY" | python3 -c "
+import sys, json
+try:
+    print(int(json.load(sys.stdin)['agreCo']))
+except Exception:
+    print('')
+" || true)
+            [ -n "$COUNT" ] && break
+            echo \"시도 $i 실패, 재시도\"; sleep 10
+          done
+          if [ -z "$COUNT" ] || [ "$COUNT" -le 0 ] 2>/dev/null; then
+            echo "숫자를 읽지 못했습니다. 이번 실행은 건너뜁니다."
+            echo "ok=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          echo "읽은 값: $COUNT"
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+          echo "ok=true" >> $GITHUB_OUTPUT
+
+      - name: 바뀌었으면 count.json 갱신
+        if: steps.fetch.outputs.ok == 'true'
+        run: |
+          NEW='${{ steps.fetch.outputs.count }}'
+          OLD=$(python3 -c "
+import json
+try:
+    print(int(json.load(open('count.json'))['count']))
+except Exception:
+    print(-1)
+")
+          if [ "$NEW" = "$OLD" ]; then
+            echo "숫자 그대로($OLD). 커밋하지 않습니다."
+            exit 0
+          fi
+          TODAY=$(TZ=Asia/Seoul date +%F)
+          printf '{ "count": %s, "updated": "%s" }\n' "$NEW" "$TODAY" > count.json
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add count.json
+          # [skip ci] 를 넣어야 Cloudflare가 다시 배포하지 않는다 (무료 배포 횟수 아끼기)
+          git commit -m "동의 수 갱신: $OLD → $NEW [skip ci]"
+          git push
