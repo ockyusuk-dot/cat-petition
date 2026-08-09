@@ -346,12 +346,19 @@ const DEADLINE = "2026-09-03";
 const SITE_URL = "https://catlaw.nct-ste.workers.dev";      // 배포 주소
 const CARD_FOOTER = "catlaw.nct-ste.workers.dev";   // 카드 맨 아래 한 줄
 const CAT_UNIT = 200;   // 고양이 한 마리가 나타내는 사람 수
+
+/* 방문자 통계용. Cloudflare Web Analytics 토큰을 넣으면 켜진다.
+   비워두면 아무것도 하지 않는다 (아무 요청도 나가지 않음). */
+const CF_BEACON_TOKEN = "30ef9383fd6e4717bd3203b9fd1d492e";
 const FALLBACK = { count: 5846, updated: "2026-08-09" };   // 어디서도 못 읽을 때만 쓰는 안전값
 
-/* 숫자를 읽어올 곳. 앞에서부터 시도한다.
-   1순위가 GitHub인 이유: 로봇이 10분마다 국회 API를 읽어 거기에 바로 올린다.
-   사이트를 다시 배포하지 않아도 숫자가 갱신된다. */
+/* 숫자를 읽어올 곳. 앞에서부터 시도해서 하나라도 되면 멈춘다.
+   로봇이 5분마다 국회 API를 읽어 GitHub에 올리므로, 사이트를 다시 배포하지 않아도 갱신된다.
+   1) GitHub API — 항상 최신. 다만 IP당 시간당 60회 제한이 있다.
+   2) raw       — 제한 없음. 대신 지역 캐시 때문에 최대 5분 뒤처질 수 있다.
+   3) 사이트에 올라간 파일 — 위 둘 다 막혔을 때. */
 const COUNT_SOURCES = [
+  "https://api.github.com/repos/ockyusuk-dot/cat-petition/contents/count.json?ref=main",
   "https://raw.githubusercontent.com/ockyusuk-dot/cat-petition/main/count.json",
   "count.json"
 ];
@@ -377,9 +384,17 @@ async function loadCount() {
 
 async function tryLoadCount(src) {
   {
-    const res = await fetch(src + "?t=" + Date.now(), { cache: "no-store" });
+    const sep = src.indexOf("?") === -1 ? "?" : "&";
+    const res = await fetch(src + sep + "t=" + Date.now(), { cache: "no-store" });
     if (!res.ok) throw new Error("HTTP " + res.status);
-    const text = await res.text();
+    let text = await res.text();
+
+    // GitHub API는 파일 내용을 base64로 감싸서 준다 → 벗겨낸다
+    if (src.indexOf("api.github.com") !== -1) {
+      const wrap = JSON.parse(text);
+      if (!wrap.content) throw new Error("content 없음");
+      text = atob(wrap.content.replace(/\s/g, ""));
+    }
 
     let data;
     try {
@@ -933,6 +948,7 @@ function revealDone() {
 const btnSign2 = document.getElementById("btn-sign-2");   // 글 다 읽고 맨 아래에서 누르는 버튼
 
 function goSign() {
+  track("sign");            // 서명하러 가기를 누른 횟수
   leftForPetition = true;
   window.open(PETITION_URL, "_blank", "noopener");
   // 인앱 브라우저는 blur/visibilitychange가 안 오기도 한다 → 시간으로도 연다
@@ -1121,6 +1137,7 @@ async function makeCard() {
     cardBlob = blob;
     cardName = "길고양이-특별법-서명-" + n + ".png";
     showResult(URL.createObjectURL(blob));
+    track("card");          // 카드를 실제로 만든 횟수
   } catch (e) {
     console.warn(e);
     resultBox.innerHTML = '<p class="err">카드를 만들지 못했습니다. 잠시 후 다시 눌러주세요.</p>';
@@ -1165,13 +1182,29 @@ function showResult(url) {
   const cp = document.createElement("button");
   cp.className = "btn-ghost";
   cp.textContent = "사이트 주소 복사";
-  cp.addEventListener("click", () => copyLink(cp));
+  cp.addEventListener("click", () => { track("copy"); copyLink(cp); });
   resultBox.appendChild(cp);
 
   const tip = document.createElement("p");
   tip.className = "savehint";
   tip.textContent = "스토리에 올릴 때 링크 스티커에 붙여넣으면 사람들이 바로 들어올 수 있습니다";
   resultBox.appendChild(tip);
+}
+
+/* 클릭 같은 행동을 기록한다.
+   Web Analytics는 페이지뷰만 세므로, 눈에 보이지 않는 작은 페이지를 하나 불러와서
+   그 페이지가 열린 횟수로 대신 센다. 쿠키도, 개인정보도 쓰지 않는다.
+   서명 버튼의 실제 이동은 건드리지 않는다 — 인앱 브라우저에서 깨지면 안 되므로. */
+function track(name) {
+  if (!CF_BEACON_TOKEN) return;
+  try {
+    const f = document.createElement("iframe");
+    f.setAttribute("aria-hidden", "true");
+    f.style.cssText = "position:absolute;width:1px;height:1px;border:0;opacity:0;left:-9999px";
+    f.src = "e/" + name + ".html?t=" + Date.now();
+    document.body.appendChild(f);
+    setTimeout(() => f.remove(), 5000);
+  } catch (e) { /* 통계는 실패해도 사이트에 영향 없음 */ }
 }
 
 const SHARE_TEXT = "아직 그곳에 살고 있습니다 — 재개발 지역 길고양이 구조 의무화 특별법 국민동의청원";
@@ -1203,5 +1236,6 @@ function copyLink(btn) {
   drawField();
 })();
 </script>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "30ef9383fd6e4717bd3203b9fd1d492e"}'></script>
 </body>
 </html>
