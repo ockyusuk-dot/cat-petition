@@ -1303,12 +1303,35 @@ function copyLink(btn) {
   } else legacy();
 }
 
-(async function init() {
-  await loadCount();
+/* 페이지를 켜둔 채로 있어도 숫자가 계속 살아 움직이게 한다.
+   중계기가 60초 캐시를 두므로 국회 서버 요청은 늘지 않는다.
+   보이지 않는 탭에서는 굳이 부르지 않는다. */
+function refreshAll() {
   renderNumbers();
   renderCountdown();
   renderBar();
   drawField();
+}
+
+let lastCount = -1;
+async function pollCount() {
+  if (document.visibilityState === "hidden") return;
+  await loadCount();
+  if (state.count !== lastCount) {     // 바뀐 경우에만 다시 그린다
+    lastCount = state.count;
+    refreshAll();
+  }
+}
+
+(async function init() {
+  await loadCount();
+  lastCount = state.count;
+  refreshAll();
+
+  setInterval(pollCount, 60000);                    // 1분마다
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") pollCount();   // 탭으로 돌아오면 즉시
+  });
 })();
 </script>
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "30ef9383fd6e4717bd3203b9fd1d492e"}'></script>
