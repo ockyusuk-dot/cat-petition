@@ -426,10 +426,12 @@ const FALLBACK = { count: 5846, updated: "2026-08-09" };   // 어디서도 못 �
 
 /* 숫자를 읽어올 곳. 앞에서부터 시도해서 하나라도 되면 멈춘다.
    로봇이 5분마다 국회 API를 읽어 GitHub에 올리므로, 사이트를 다시 배포하지 않아도 갱신된다.
-   1) GitHub API — 항상 최신. 다만 IP당 시간당 60회 제한이 있다.
-   2) raw       — 제한 없음. 대신 지역 캐시 때문에 최대 5분 뒤처질 수 있다.
-   3) 사이트에 올라간 파일 — 위 둘 다 막혔을 때. */
+   1) 중계기 — 국회 API를 그 자리에서 읽어온다. 지연 없음.
+   2) GitHub API — 중계기가 멈췄을 때. IP당 시간당 60회 제한이 있다.
+   3) raw       — 제한 없음. 대신 지역 캐시 때문에 뒤처질 수 있다.
+   4) 사이트에 올라간 파일 — 위가 전부 막혔을 때. */
 const COUNT_SOURCES = [
+  "https://catcount.nct-ste.workers.dev",                                              // 국회 API 실시간 중계
   "https://api.github.com/repos/ockyusuk-dot/cat-petition/contents/count.json?ref=main",
   "https://raw.githubusercontent.com/ockyusuk-dot/cat-petition/main/count.json",
   "count.json"
