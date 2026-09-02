@@ -13,7 +13,7 @@
 <link rel="stylesheet" as="style" crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <title>아직 그곳에 살고 있습니다 · 재개발 지역 길고양이 구조 의무화 특별법</title>
-<meta name="description" content="재개발·재건축 현장에 남겨진 길고양이를 구조하고 안전하게 이주시키도록 하는 특별법 국민동의청원입니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+<meta name="description" content="재개발·재건축 현장에 남겨진 길고양이를 구조하고 안전하게 이주시키도록 하는 특별법 국민동의청원입니다. 5만 명을 넘어 국회가 이 청원을 심사합니다.">
 
 <!-- 링크 미리보기 (카카오톡·인스타·트위터에 붙일 때 보이는 카드).
      카카오톡은 상대경로를 못 읽으므로 반드시 절대주소여야 한다. -->
@@ -22,14 +22,14 @@
 <meta property="og:url" content="https://savecats.kr/">
 <meta property="og:site_name" content="재개발 지역 길고양이 구조 의무화 특별법 국민동의청원">
 <meta property="og:title" content="아직 그곳에 살고 있습니다">
-<meta property="og:description" content="사람이 떠난 동네에 고양이가 남습니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+<meta property="og:description" content="사람이 떠난 동네에 고양이가 남습니다. 5만 명을 넘었습니다. 국회가 이 청원을 심사합니다.">
 <meta property="og:image" content="https://savecats.kr/images/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="아직 그곳에 살고 있습니다">
-<meta name="twitter:description" content="사람이 떠난 동네에 고양이가 남습니다. 9월 3일까지 5만 명이 모이면 국회가 심사합니다.">
+<meta name="twitter:description" content="사람이 떠난 동네에 고양이가 남습니다. 5만 명을 넘었습니다. 국회가 이 청원을 심사합니다.">
 <meta name="twitter:image" content="https://savecats.kr/images/og.jpg">
 
 <link rel="icon" href="images/icon-180.png" type="image/png">
@@ -254,7 +254,7 @@
   </div>
 
   <div class="cta">
-    <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
+    <p class="cta-note">5만 명을 넘었습니다. 국회가 이 청원을 심사합니다.</p>
     <button class="btn-primary" id="btn-sign">서명하러 가기</button>
 
     <div class="namebox hidden" id="namebox">
@@ -385,7 +385,7 @@
       <p class="last"><span id="close-date"></span>까지입니다.</p>
 
       <div class="cta-bottom">
-      <p class="cta-note">5만 명이 모이면 국회가 이 청원을 심사합니다.</p>
+      <p class="cta-note">5만 명을 넘었습니다. 국회가 이 청원을 심사합니다.</p>
       <button class="btn-primary" id="btn-sign-2">서명하러 가기</button>
       <div class="again"><a id="link-done-2">이미 서명하셨나요? 카드 만들기</a></div>
     </div>
@@ -403,7 +403,7 @@
   <div class="c-big"><em id="c-count">–</em>명이<br>함께하고 있었습니다</div>
   <div class="c-petition">「재개발·재건축 지역 길고양이<br>구조 및 안전 이소 의무화 특별법」</div>
   <div class="c-deadline" id="c-deadline"></div>
-  <div class="c-goal">5만 명이 모이면 국회가 심사합니다</div>
+  <div class="c-goal">5만 명을 넘었습니다. 국회가 심사합니다</div>
   <div class="c-space"></div>
   <div class="c-url" id="c-url"></div>
 </div>
@@ -968,11 +968,14 @@ function renderCountdown() {
 
 /* 진행 막대와 그 끝에 앉은 고양이. 서명이 늘면 고양이가 오른쪽으로 간다. */
 function renderBar() {
-  const pct = Math.min(100, state.count / GOAL * 100);
-  document.getElementById("barfill").style.width = pct.toFixed(1) + "%";
+  /* 목표를 넘어도 글자는 진짜 값(103.9% 등)을 보여준다.
+     막대와 고양이만 100%에서 멈춘다 — 더 갈 자리가 없으므로. */
+  const pct = state.count / GOAL * 100;
+  const capped = Math.min(100, pct);
+  document.getElementById("barfill").style.width = capped.toFixed(1) + "%";
   document.getElementById("barnote").textContent = pct.toFixed(1) + "% 달성";
   const cv = document.getElementById("barcat");
-  cv.style.left = "calc(" + pct.toFixed(1) + "% - 14px)";
+  cv.style.left = "calc(" + capped.toFixed(1) + "% - 14px)";
   const g = cv.getContext("2d");
   g.setTransform(3, 0, 0, 3, 0, 0);
   g.clearRect(0, 0, 28, 28);
@@ -1129,7 +1132,7 @@ function drawCardFallback(cat, n, who) {
   cardText(g, "\u300C재개발\u00B7재건축 지역 길고양이", 26, "400", "#4A423A", 762);
   cardText(g, "구조 및 안전 이소 의무화 특별법\u300D", 26, "400", "#4A423A", 801);
   cardText(g, deadlineText(), 29, "700", "#B4442A", 852);
-  cardText(g, "5만 명이 모이면 국회가 심사합니다", 32, "400", "#3B342C", 910);
+  cardText(g, "5만 명을 넘었습니다. 국회가 심사합니다", 32, "400", "#3B342C", 910);
   if (CARD_FOOTER) cardText(g, CARD_FOOTER, 22, "400", "#9A9089", 1025);
   return cv;
 }
