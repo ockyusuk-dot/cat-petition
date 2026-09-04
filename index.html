@@ -101,6 +101,8 @@
                  box-shadow: 0 8px 20px rgba(30,50,38,.22); }
   .cta-note { font-size: 14px; font-weight: 700; color: var(--ink); text-align: center; margin: 0 0 10px; }
   .cta-sub { font-size: 13px; line-height: 1.7; color: var(--ink3); text-align: center; margin: -4px 0 14px; }
+  .cta-sub .src { color: var(--ink2); text-decoration: underline; text-underline-offset: 3px;
+                  display: inline-block; margin-top: 6px; }
   .closing .cta-sub { color: rgba(255,255,255,.7); }
   button {
     font-family: inherit; width: 100%; font-size: 17px; font-weight: 700;
@@ -257,7 +259,8 @@
 
   <div class="cta">
     <p class="cta-note">청원이 성립되었습니다. 국회가 이 청원을 심사합니다.</p>
-    <p class="cta-sub">9월 2일 동의 기간이 끝났고, 9월 3일 국회에 접수되어 위원회에 회부되었습니다. 서명은 더 이상 받지 않습니다.</p>
+    <p class="cta-sub">9월 2일 동의 기간이 끝났고, 9월 3일 국회에 접수되어 위원회에 회부되었습니다. 서명은 더 이상 받지 않습니다.<br>
+      <a class="src" href="" id="link-petition" target="_blank" rel="noopener">국회 국민동의청원에서 원문 보기 ↗</a></p>
     <button class="btn-primary" id="btn-sign">기념 카드 만들기</button>
 
     <div class="namebox hidden" id="namebox">
@@ -979,6 +982,9 @@ function renderBar() {
 }
 
 function renderNumbers() {
+  // 원문 링크는 주소를 한 곳(PETITION_URL)에서만 관리한다
+  const lp = document.getElementById("link-petition");
+  if (lp) lp.href = PETITION_URL;
   document.getElementById("n-count").textContent = fmt(state.count);
   document.getElementById("n-goal").textContent = fmt(GOAL);
   document.getElementById("n-scale").textContent = "고양이 1마리 = " + fmt(CAT_UNIT) + "명";
