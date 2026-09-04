@@ -216,6 +216,21 @@
   .c-top { flex: 1 1 auto; }                        /* 위아래로 여백을 반씩 나눈다 */
   .c-space { flex: 1 1 auto; min-height: 84px; }    /* 인스타 링크 스티커 자리 */
   .c-url { font-size: 22px; color: #9A9089; }
+
+  /* ---- 큰 화면 (노트북·데스크톱) ----
+     청원이 끝난 뒤로는 기자·단체 실무자처럼 데스크톱으로 보는 사람이 늘었다.
+     min-width 조건 안에만 두었으므로 휴대폰 화면에는 아무 영향이 없다. */
+  @media (min-width: 700px) {
+    .wrap { max-width: 640px; padding-left: 26px; padding-right: 26px; }
+    .hero { height: 340px; margin-left: -26px; margin-right: -26px; }
+    h1 { font-size: 36px; }
+    .subtitle { font-size: 13.5px; }
+    .explain p { font-size: 17px; line-height: 1.95; }
+    .explain { margin-top: 52px; }
+    .closing { padding: 40px 32px; }
+    .closing p { font-size: 17.5px; }
+    #n-count { font-size: 44px; }
+  }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
@@ -911,7 +926,9 @@ const ctx = canvas.getContext("2d");
 
 function fieldSize() {
   const box = document.getElementById("field-box");
-  return { w: box.clientWidth, h: 150 };   // 박스 안에 들어가는 고정 높이
+  // 큰 화면에서는 칸이 넓어진 만큼 높이도 키운다. 안 그러면 고양이가 납작해진다.
+  const h = window.innerWidth >= 700 ? 240 : 150;
+  return { w: box.clientWidth, h };
 }
 
 const GRAY = "#E4DED3";          // 아주 옅은 단색 — 채워진 쪽과 경계가 한눈에 보이도록
